@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="جدول أجور الوظيفة العمومية بالمغرب 2026. السلاليم، الدرجات، الأرقام الاستدلالية والتعويضات.">
+  <title>الأجور 2026 | بوابتي 360</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header id="main-header">
+    <div class="header-container">
+      <button class="hamburger" id="hamburger-btn" aria-label="القائمة">
+        <i class="fas fa-bars"></i>
+      </button>
+      <a href="index.html" class="logo">
+        <span class="logo-main">بوابتي</span><span class="logo-360">360</span>
+      </a>
+      <button class="dark-toggle" id="dark-toggle" aria-label="الوضع الليلي/النهاري">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">القائمة</span>
+      <button class="sidebar-close" id="sidebar-close"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <h3>الأقسام</h3>
+        <ul>
+          <li class="nav-group">
+            <span class="nav-group-title"><i class="fas fa-landmark"></i> القطاع العام</span>
+            <ul class="sub-nav">
+              <li><a href="concours.html"><i class="fas fa-file-alt"></i> مباريات</a></li>
+              <li><a href="emplois-superieurs.html"><i class="fas fa-user-tie"></i> مناصب عليا</a></li>
+              <li><a href="postes-responsabilite.html"><i class="fas fa-briefcase"></i> مناصب المسؤولية</a></li>
+              <li><a href="salaires-2026.html"><i class="fas fa-money-bill-wave"></i> الأجور 2026</a></li>
+              <li><a href="calendrier.html"><i class="fas fa-calendar-alt"></i> الرزنامة 2026</a></li>
+            </ul>
+          </li>
+          <li><a href="secteur-prive.html"><i class="fas fa-building"></i> القطاع الخاص</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h3>معلومات</h3>
+        <ul>
+          <li><a href="index.html#qui-sommes-nous"><i class="fas fa-users"></i> من نحن</a></li>
+          <li><a href="contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+          <li><a href="faq.html"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+          <li><a href="politique-confidentialite.html"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h3>الإعدادات</h3>
+        <div class="settings-group">
+          <label>حجم الخط</label>
+          <div class="font-size-controls">
+            <button class="font-size-btn" data-size="small">أ-</button>
+            <button class="font-size-btn active" data-size="normal">أ</button>
+            <button class="font-size-btn" data-size="large">أ+</button>
+          </div>
+        </div>
+        <div class="settings-group">
+          <label>جهة المغرب</label>
+          <select id="region-filter" class="region-select">
+            <option value="all">جميع الجهات</option>
+            <option value="طنجة-تطوان-الحسيمة">طنجة-تطوان-الحسيمة</option>
+            <option value="الشرق">الشرق</option>
+            <option value="فاس-مكناس">فاس-مكناس</option>
+            <option value="الرباط-سلا-القنيطرة">الرباط-سلا-القنيطرة</option>
+            <option value="بني ملال-خنيفرة">بني ملال-خنيفرة</option>
+            <option value="الدار البيضاء-سطات">الدار البيضاء-سطات</option>
+            <option value="مراكش-آسفي">مراكش-آسفي</option>
+            <option value="درعة-تافيلالت">درعة-تافيلالت</option>
+            <option value="سوس-ماسة">سوس-ماسة</option>
+            <option value="كلميم-واد نون">كلميم-واد نون</option>
+            <option value="العيون-الساقية الحمراء">العيون-الساقية الحمراء</option>
+            <option value="الداخلة-وادي الذهب">الداخلة-وادي الذهب</option>
+          </select>
+        </div>
+        <div class="settings-group toggle-setting">
+          <label>عرض الأجور</label>
+          <label class="switch">
+            <input type="checkbox" id="show-salaries-toggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <main>
+    <h1 class="page-title">الأجور 2026 - الوظيفة العمومية</h1>
+    <div class="table-responsive">
+      <table class="salary-table">
+        <thead>
+          <tr>
+            <th>السلم</th>
+            <th>الدرجة</th>
+            <th>الرقم الاستدلالي</th>
+            <th>الأجر الأساسي (درهم)</th>
+            <th>التعويضات (درهم)</th>
+          </tr>
+        </thead>
+        <tbody id="salary-table-body">
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="logo-main">بوابتي</span><span class="logo-360">360</span>
+      </div>
+      <div class="footer-links">
+        <a href="contact.html">اتصل بنا</a>
+        <a href="faq.html">الأسئلة الشائعة</a>
+        <a href="politique-confidentialite.html">الخصوصية</a>
+        <a href="sitemap.xml">خريطة الموقع</a>
+      </div>
+      <p class="copyright">© 2026 بوابتي 360 - جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof initSalaires === 'function') initSalaires();
+    });
+  </script>
+</body>
+</html>
