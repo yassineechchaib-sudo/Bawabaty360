@@ -244,8 +244,8 @@ function showArticleDetail(article) {
   </div>
 `) }
       
-      <!-- حاوية الإعلان الأول -->
-      <div class="ad-container"><div id="ad-container-1"></div></div>
+     <!-- حاوية الإعلان الأول -->
+<div class="ad-container"><div id="container-62aeec08f830e83a3e29d72c45206a0e"></div></div>
       
       <p class="intro-text">${article.introText || article.description}</p>
       
@@ -291,8 +291,8 @@ function showArticleDetail(article) {
       
       <a href="${article.lienInscription || '#'}" class="btn btn-primary btn-large" target="_blank"><i class="fas fa-pen"></i> رابط التسجيل لاجتياز المباراة</a>
       
-      <!-- حاوية الإعلان الثاني -->
-      <div class="ad-container"><div id="ad-container-2"></div></div>
+     <!-- حاوية الإعلان الثاني -->
+<div class="ad-container"><div id="ad-slot-2"></div></div>
       
       <!-- أزرار المشاركة والنسخ -->
       <div class="share-actions">
@@ -346,8 +346,8 @@ function showArticleDetail(article) {
 
 // دالة تحميل إعلانات Adsterra ديناميكيًا
 function loadArticleAds() {
-  // الإعلان الأول (Native Banner)
-  const adContainer1 = document.getElementById('ad-container-1');
+  // الإعلان الأول (Native Banner) - يستخدم المعرف الأصلي من Adsterra
+  const adContainer1 = document.getElementById('container-62aeec08f830e83a3e29d72c45206a0e');
   if (adContainer1 && !document.getElementById('ad-script-1')) {
     const script1 = document.createElement('script');
     script1.id = 'ad-script-1';
@@ -357,18 +357,17 @@ function loadArticleAds() {
     document.body.appendChild(script1);
   }
 
-  // الإعلان الثاني (Banner)
-  const adContainer2 = document.getElementById('ad-container-2');
+  // الإعلان الثاني (Banner) - يحتاج إلى معرف محدد و atOptions
+  const adContainer2 = document.getElementById('ad-slot-2');
   if (adContainer2 && !document.getElementById('ad-script-2')) {
-    if (typeof window.atOptions === 'undefined') {
-      window.atOptions = {
-        'key': 'fe793f89cc48b4ba3cf3e5271b60bfcd',
-        'format': 'iframe',
-        'height': 250,
-        'width': 300,
-        'params': {}
-      };
-    }
+    // تأكد من تعريف atOptions قبل تحميل السكربت
+    window.atOptions = {
+      'key': 'fe793f89cc48b4ba3cf3e5271b60bfcd',
+      'format': 'iframe',
+      'height': 250,
+      'width': 300,
+      'params': {}
+    };
     const script2 = document.createElement('script');
     script2.id = 'ad-script-2';
     script2.src = 'https://www.highperformanceformat.com/fe793f89cc48b4ba3cf3e5271b60bfcd/invoke.js';
