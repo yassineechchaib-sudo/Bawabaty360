@@ -1,4 +1,4 @@
-// script.js - Logic UI (Arabic only)
+// script.js - Logic UI (Arabic only) - مع إعلانات مصححة
 
 (function() {
   // Dark mode
@@ -244,8 +244,8 @@ function showArticleDetail(article) {
   </div>
 `) }
       
-     <!-- حاوية الإعلان الأول -->
-<div class="ad-container"><div id="container-62aeec08f830e83a3e29d72c45206a0e"></div></div>
+      <!-- حاوية الإعلان الأول (Native) -->
+      <div class="ad-container"><div id="container-62aeec08f830e83a3e29d72c45206a0e"></div></div>
       
       <p class="intro-text">${article.introText || article.description}</p>
       
@@ -291,8 +291,10 @@ function showArticleDetail(article) {
       
       <a href="${article.lienInscription || '#'}" class="btn btn-primary btn-large" target="_blank"><i class="fas fa-pen"></i> رابط التسجيل لاجتياز المباراة</a>
       
-     <!-- حاوية الإعلان الثاني -->
-<div class="ad-container"><div id="ad-slot-2"></div></div>
+      <!-- حاوية الإعلان الثاني (Banner) -->
+      <div class="ad-container" id="ad-slot-2-container" style="min-height: 250px; text-align: center;">
+        <!-- سيتم ملؤها بـ iframe -->
+      </div>
       
       <!-- أزرار المشاركة والنسخ -->
       <div class="share-actions">
@@ -313,7 +315,7 @@ function showArticleDetail(article) {
   `;
   section.style.display = 'block';
   
-  // تحميل الإعلانات ديناميكيًا
+  // تحميل الإعلانات ديناميكيًا (مع تصحيح التكرار)
   loadArticleAds();
   
   // ملء الاقتراحات
@@ -344,34 +346,37 @@ function showArticleDetail(article) {
   window.updateCountdowns();
 }
 
-// دالة تحميل إعلانات Adsterra ديناميكيًا
+// دالة تحميل إعلانات Adsterra - مصححة بالكامل
 function loadArticleAds() {
-  // الإعلان الأول (Native Banner) - يستخدم المعرف الأصلي من Adsterra
+  // الإعلان الأول (Native Banner) - مع التحقق من عدم وجوده مسبقًا
   const adContainer1 = document.getElementById('container-62aeec08f830e83a3e29d72c45206a0e');
-  if (adContainer1 && !document.getElementById('ad-script-1')) {
-    const script1 = document.createElement('script');
-    script1.id = 'ad-script-1';
-    script1.async = true;
-    script1.setAttribute('data-cfasync', 'false');
-    script1.src = 'https://pl29205519.profitablecpmratenetwork.com/62aeec08f830e83a3e29d72c45206a0e/invoke.js';
-    document.body.appendChild(script1);
+  if (adContainer1) {
+    // التحقق مما إذا كان الإعلان قد تم تحميله بالفعل (سواء كان هناك سكربت أو محتوى داخل الحاوية)
+    if (!adContainer1.hasAttribute('data-ad-loaded') && !document.getElementById('ad-script-1')) {
+      adContainer1.setAttribute('data-ad-loaded', 'true');
+      const script1 = document.createElement('script');
+      script1.id = 'ad-script-1';
+      script1.async = true;
+      script1.setAttribute('data-cfasync', 'false');
+      script1.src = 'https://pl29205519.profitablecpmratenetwork.com/62aeec08f830e83a3e29d72c45206a0e/invoke.js';
+      document.body.appendChild(script1);
+    }
   }
 
-  // الإعلان الثاني (Banner) - يحتاج إلى معرف محدد و atOptions
-  const adContainer2 = document.getElementById('ad-slot-2');
-  if (adContainer2 && !document.getElementById('ad-script-2')) {
-    // تأكد من تعريف atOptions قبل تحميل السكربت
-    window.atOptions = {
-      'key': 'fe793f89cc48b4ba3cf3e5271b60bfcd',
-      'format': 'iframe',
-      'height': 250,
-      'width': 300,
-      'params': {}
-    };
-    const script2 = document.createElement('script');
-    script2.id = 'ad-script-2';
-    script2.src = 'https://www.highperformanceformat.com/fe793f89cc48b4ba3cf3e5271b60bfcd/invoke.js';
-    document.body.appendChild(script2);
+  // الإعلان الثاني (Banner) - استخدام iframe مباشر لضمان الموضع
+  const adContainer2 = document.getElementById('ad-slot-2-container');
+  if (adContainer2 && !adContainer2.hasAttribute('data-ad-loaded')) {
+    adContainer2.setAttribute('data-ad-loaded', 'true');
+    // إنشاء iframe بدلاً من الاعتماد على سكربت قد يضعه في أسفل الصفحة
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.highperformanceformat.com/fe793f89cc48b4ba3cf3e5271b60bfcd?format=iframe&height=250&width=300';
+    iframe.width = '300';
+    iframe.height = '250';
+    iframe.frameBorder = '0';
+    iframe.scrolling = 'no';
+    iframe.style.margin = '0 auto';
+    iframe.style.display = 'block';
+    adContainer2.appendChild(iframe);
   }
 }
 
