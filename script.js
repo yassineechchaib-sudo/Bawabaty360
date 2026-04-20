@@ -245,8 +245,8 @@ function showArticleDetail(article) {
 `) }
       
       <!-- حاوية الإعلان الأول -->
-      <div class="ad-container"><div id="ad-container-1"></div></div>
-      
+<div class="ad-container"><div id="container-62aeec08f830e83a3e29d72c45206a0e"></div></div>
+
       <p class="intro-text">${article.introText || article.description}</p>
       
       <h3>شروط المشاركة</h3>
