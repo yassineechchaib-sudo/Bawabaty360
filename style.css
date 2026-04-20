@@ -831,7 +831,77 @@ body.dark-mode .image-placeholder img {
 .article-detail .deadline-countdown {
   margin: 1.2rem 0;
 }
+/* ========== ARTICLE GALLERY (صور متعددة) ========== */
+.article-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
 
+.gallery-item {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  background-color: #f1f5f9;
+  border: 1px solid var(--border-light);
+  transition: transform 0.2s;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* للوضع الداكن */
+body.dark-mode .gallery-item {
+  background-color: #1e293b;
+}
+
+/* إذا كانت الصورة واحدة فقط، نجعلها تأخذ العرض الكامل */
+.article-gallery:has(.gallery-item:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.article-gallery .gallery-item:only-child img {
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+/* للتوافق مع الصورة القديمة (حقل image) */
+.image-placeholder {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.image-placeholder img {
+  max-width: 95%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  background-color: #f1f5f9;
+  padding: 0.5rem;
+}
+
+/* استجابة الجوال */
+@media (max-width: 768px) {
+  .article-gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .gallery-item img {
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+  }
+}
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .hero-content h1 { font-size: 2rem; }
