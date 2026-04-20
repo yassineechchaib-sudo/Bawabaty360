@@ -250,7 +250,8 @@ function showArticleDetail(article) {
   </div>
 `) }
       
-      <div class="ad-container"> <!-- أدرج كود ADSTERRA هنا - بانر 300x250 --> </div>
+      <div class="ad-container"><script async="async" data-cfasync="false" src="https://pl29205519.profitablecpmratenetwork.com/62aeec08f830e83a3e29d72c45206a0e/invoke.js"></script>
+<div id="container-62aeec08f830e83a3e29d72c45206a0e"></div></div>
       
       <p class="intro-text">${article.introText || article.description}</p>
       
@@ -295,7 +296,16 @@ function showArticleDetail(article) {
       ` : ''}
       
       <a href="${article.lienInscription || '#'}" class="btn btn-primary btn-large" target="_blank"><i class="fas fa-pen"></i> رابط التسجيل لاجتياز المباراة</a>
-      
+      <div class="ad-container"><script>
+  atOptions = {
+    'key' : 'fe793f89cc48b4ba3cf3e5271b60bfcd',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/fe793f89cc48b4ba3cf3e5271b60bfcd/invoke.js"></script> </div>
       <!-- أزرار المشاركة والنسخ -->
       <div class="share-actions">
         <span>شارك هذه المباراة:</span>
