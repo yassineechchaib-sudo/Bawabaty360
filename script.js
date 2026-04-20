@@ -232,14 +232,23 @@ function showArticleDetail(article) {
         
       </div>
       
-      <div class="image-placeholder">
-        ${article.image ? 
-          `<img src="${article.image}" alt="إعلان رسمي - ${article.ministry}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'500\' viewBox=\'0 0 800 500\'%3E%3Crect width=\'800\' height=\'500\' fill=\'%23e2e8f0\'/%3E%3Ctext x=\'40\' y=\'40\' font-size=\'20\' fill=\'%23475569\'%3Eالصورة غير متوفرة%3C/text%3E%3C/svg%3E';">` 
-          : 
-          `<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%23e2e8f0'/%3E%3Ctext x='40' y='40' font-size='20' fill='%23475569'%3Eإعلان مباراة رسمي — ${article.ministry} — بختم رسمي%3C/text%3E%3C/svg%3E" alt="إعلان رسمي">`
-        }
-        
+      ${ (article.images && article.images.length > 0) ? `
+  <div class="article-gallery">
+    ${article.images.map(img => `
+      <div class="gallery-item">
+        <img src="${img}" alt="صورة من الإعلان" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'500\' viewBox=\'0 0 800 500\'%3E%3Crect width=\'800\' height=\'500\' fill=\'%23e2e8f0\'/%3E%3Ctext x=\'40\' y=\'40\' font-size=\'20\' fill=\'%23475569\'%3Eالصورة غير متوفرة%3C/text%3E%3C/svg%3E';">
       </div>
+    `).join('')}
+  </div>
+` : (article.image ? `
+  <div class="image-placeholder">
+    <img src="${article.image}" alt="إعلان رسمي" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'500\' viewBox=\'0 0 800 500\'%3E%3Crect width=\'800\' height=\'500\' fill=\'%23e2e8f0\'/%3E%3Ctext x=\'40\' y=\'40\' font-size=\'20\' fill=\'%23475569\'%3Eالصورة غير متوفرة%3C/text%3E%3C/svg%3E';">
+  </div>
+` : `
+  <div class="image-placeholder">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%23e2e8f0'/%3E%3Ctext x='40' y='40' font-size='20' fill='%23475569'%3Eإعلان مباراة رسمي — ${article.ministry} — بختم رسمي%3C/text%3E%3C/svg%3E" alt="إعلان رسمي">
+  </div>
+`) }
       
       <div class="ad-container"> <!-- أدرج كود ADSTERRA هنا - بانر 300x250 --> </div>
       
