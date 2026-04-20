@@ -349,6 +349,7 @@ function loadArticleAds() {
   const adContainer1 = document.getElementById('ad-container-1');
   if (adContainer1 && !adContainer1.hasAttribute('data-ad-loaded')) {
     adContainer1.setAttribute('data-ad-loaded', 'true');
+    // إنشاء عنصر script داخل الحاوية نفسها لضمان الحقن
     const script1 = document.createElement('script');
     script1.async = true;
     script1.setAttribute('data-cfasync', 'false');
@@ -360,7 +361,6 @@ function loadArticleAds() {
   const adContainer2 = document.getElementById('ad-container-2');
   if (adContainer2 && !adContainer2.hasAttribute('data-ad-loaded')) {
     adContainer2.setAttribute('data-ad-loaded', 'true');
-    // تعريف atOptions قبل تحميل السكربت
     window.atOptions = {
       'key': 'fe793f89cc48b4ba3cf3e5271b60bfcd',
       'format': 'iframe',
@@ -373,7 +373,6 @@ function loadArticleAds() {
     adContainer2.appendChild(script2);
   }
 }
-
 function hideArticleDetail() {
   document.querySelectorAll('.concours-section').forEach(s => s.style.display = 'block');
   document.getElementById('article-detail-section').style.display = 'none';
