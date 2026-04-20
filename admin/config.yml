@@ -1,0 +1,59 @@
+backend:
+  name: github
+  repo: yassineechchaib-sudo/bawabaty360   # ⚠️ غيّر YOUR_GITHUB_USERNAME إلى اسم مستخدم GitHub الخاص بك
+  branch: main
+  base_url: https://bawabaty-oauth.vercel.app   # سننشئ هذا المشروع في الخطوة التالية
+  auth_endpoint: auth
+
+# مكان تخزين الصور التي ترفعها عبر CMS
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# إعدادات الموقع
+site_url: https://bawabaty360.com
+display_url: https://bawabaty360.com
+locale: 'ar'
+
+collections:
+  - name: "concours"
+    label: "المباريات"
+    label_singular: "مباراة"
+    folder: ""
+    extension: "js"
+    format: "json"
+    create: true
+    identifier_field: "id"
+    file: "data.js"
+    # تحديد اسم المصفوفة التي سيتم التعديل عليها
+    field: { name: "concoursData", widget: "list", fields: [
+      { label: "المعرف (ID)", name: "id", widget: "number", required: true },
+      { label: "السلم", name: "echelle", widget: "select", options: ["6","8","9","10","11"], default: "6" },
+      { label: "العنوان المختصر", name: "title", widget: "string" },
+      { label: "العنوان الكامل", name: "fullTitle", widget: "string" },
+      { label: "الوزارة", name: "ministry", widget: "string" },
+      { label: "عدد المناصب", name: "postes", widget: "number", value_type: "int" },
+      { label: "تاريخ النشر", name: "datePub", widget: "date" },
+      { label: "آخر أجل (تاريخ ووقت)", name: "deadline", widget: "datetime" },
+      { label: "صورة", name: "image", widget: "image", required: false },
+      { label: "مقدمة", name: "introText", widget: "text" },
+      { label: "وصف", name: "description", widget: "text" },
+      { label: "المهام", name: "mission", widget: "text" },
+      { label: "مكان التعيين", name: "lieu", widget: "string" },
+      { label: "السن", name: "ageLimit", widget: "string" },
+      { label: "الشهادة المطلوبة", name: "diplome", widget: "string" },
+      { label: "التخصصات", name: "specialites", widget: "string" },
+      { label: "مقدمة الشروط", name: "conditionsIntro", widget: "string", default: "يشترط في المترشحين:" },
+      { label: "الشروط", name: "conditions", widget: "list", field: { label: "شرط", name: "item", widget: "string" } },
+      { label: "مقدمة الوثائق", name: "piecesIntro", widget: "string", default: "يتكون ملف الترشيح من:" },
+      { label: "الوثائق المطلوبة", name: "pieces", widget: "list", field: { label: "وثيقة", name: "item", widget: "string" } },
+      { label: "مقدمة آخر أجل", name: "deadlineIntro", widget: "string", default: "يجب إيداع الترشيحات إلكترونياً قبل:" },
+      { label: "الملاحظات الهامة", name: "notesImportantes", widget: "list", field: { label: "ملاحظة", name: "item", widget: "string" } },
+      { label: "مركز المباراة", name: "centreMabara", widget: "string" },
+      { label: "طبيعة الاختبارات", name: "epreuves", widget: "text" },
+      { label: "ما بعد الاختبار", name: "apresTest", widget: "text" },
+      { label: "تاريخ بدء التسجيل", name: "inscriptionDebut", widget: "date" },
+      { label: "تاريخ نهاية التسجيل", name: "inscriptionFin", widget: "date" },
+      { label: "تاريخ المباراة", name: "dateEpreuve", widget: "date" },
+      { label: "النتائج", name: "resultats", widget: "string" },
+      { label: "رابط التسجيل", name: "lienInscription", widget: "string" }
+    ] }
