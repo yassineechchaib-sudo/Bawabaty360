@@ -216,20 +216,14 @@ function showArticleDetail(article) {
     regionalRows = Object.entries(article.regions).map(([r, nb]) => `<tr><td>${r}</td><td>${nb}</td></tr>`).join('');
   }
   
-  // بناء قائمة الشروط
   const conditionsList = article.conditions ? article.conditions.map(c => `<li>${c}</li>`).join('') : '';
-  
-  // بناء قائمة الوثائق
   const piecesList = article.pieces ? article.pieces.map(p => `<li>${p}</li>`).join('') : '';
-  
-  // بناء الملاحظات الهامة
   const notesList = article.notesImportantes ? article.notesImportantes.map(n => `<li>${n}</li>`).join('') : '';
   
   content.innerHTML = `
     <article class="article-detail">
       <div class="article-header">
         <h2>${article.fullTitle || article.title}</h2>
-        
       </div>
       
       ${ (article.images && article.images.length > 0) ? `
@@ -250,8 +244,8 @@ function showArticleDetail(article) {
   </div>
 `) }
       
-      <div class="ad-container"><script async="async" data-cfasync="false" src="https://pl29205519.profitablecpmratenetwork.com/62aeec08f830e83a3e29d72c45206a0e/invoke.js"></script>
-<div id="container-62aeec08f830e83a3e29d72c45206a0e"></div></div>
+      <!-- حاوية الإعلان الأول -->
+      <div class="ad-container"><div id="ad-container-1"></div></div>
       
       <p class="intro-text">${article.introText || article.description}</p>
       
@@ -296,16 +290,10 @@ function showArticleDetail(article) {
       ` : ''}
       
       <a href="${article.lienInscription || '#'}" class="btn btn-primary btn-large" target="_blank"><i class="fas fa-pen"></i> رابط التسجيل لاجتياز المباراة</a>
-      <div class="ad-container"><script>
-  atOptions = {
-    'key' : 'fe793f89cc48b4ba3cf3e5271b60bfcd',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/fe793f89cc48b4ba3cf3e5271b60bfcd/invoke.js"></script> </div>
+      
+      <!-- حاوية الإعلان الثاني -->
+      <div class="ad-container"><div id="ad-container-2"></div></div>
+      
       <!-- أزرار المشاركة والنسخ -->
       <div class="share-actions">
         <span>شارك هذه المباراة:</span>
@@ -324,6 +312,9 @@ function showArticleDetail(article) {
     </article>
   `;
   section.style.display = 'block';
+  
+  // تحميل الإعلانات ديناميكيًا
+  loadArticleAds();
   
   // ملء الاقتراحات
   const suggestionsContainer = document.getElementById('suggestions-container');
@@ -351,6 +342,38 @@ function showArticleDetail(article) {
   });
   
   window.updateCountdowns();
+}
+
+// دالة تحميل إعلانات Adsterra ديناميكيًا
+function loadArticleAds() {
+  // الإعلان الأول (Native Banner)
+  const adContainer1 = document.getElementById('ad-container-1');
+  if (adContainer1 && !document.getElementById('ad-script-1')) {
+    const script1 = document.createElement('script');
+    script1.id = 'ad-script-1';
+    script1.async = true;
+    script1.setAttribute('data-cfasync', 'false');
+    script1.src = 'https://pl29205519.profitablecpmratenetwork.com/62aeec08f830e83a3e29d72c45206a0e/invoke.js';
+    document.body.appendChild(script1);
+  }
+
+  // الإعلان الثاني (Banner)
+  const adContainer2 = document.getElementById('ad-container-2');
+  if (adContainer2 && !document.getElementById('ad-script-2')) {
+    if (typeof window.atOptions === 'undefined') {
+      window.atOptions = {
+        'key': 'fe793f89cc48b4ba3cf3e5271b60bfcd',
+        'format': 'iframe',
+        'height': 250,
+        'width': 300,
+        'params': {}
+      };
+    }
+    const script2 = document.createElement('script');
+    script2.id = 'ad-script-2';
+    script2.src = 'https://www.highperformanceformat.com/fe793f89cc48b4ba3cf3e5271b60bfcd/invoke.js';
+    document.body.appendChild(script2);
+  }
 }
 
 function hideArticleDetail() {
@@ -479,6 +502,7 @@ function initFAQ() {
     <div class="faq-item"><h3>${q.question}</h3><p>${q.answer}</p></div>
   `).join('');
 }
+
 // إنشاء قائمة التنقل السريع في صفحة المباريات
 function createQuickNav() {
   const main = document.querySelector('.concours-page');
@@ -525,6 +549,7 @@ function createQuickNav() {
     document.getElementById('echelle11-container').closest('.concours-section').scrollIntoView({ behavior: 'smooth' });
   });
 }
+
 // Expose init functions
 window.initIndex = initIndex;
 window.initConcours = initConcours;
