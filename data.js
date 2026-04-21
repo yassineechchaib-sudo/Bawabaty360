@@ -469,7 +469,7 @@ window.concoursData = [
   lienInscription: "https://wolouj.men.gov.ma"
 },
   { 
-  id: #, 
+  id: 302, 
   echelle: 10, 
   title: "متصرف من الدرجة الثالثة", 
   fullTitle: "مباراة توظيف 140 متصرفاً من الدرجة الثالثة (السلم 10) – عدة قطاعات وزارية 2026", 
