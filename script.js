@@ -269,7 +269,7 @@ function showArticleDetail(article) {
       
       <p style="margin-top: 1.5rem;">
   📝 للتسجيل في المباراة، المرجو زيارة الرابط التالي: 
-  <a href="${article.lienInscription || '#'}" target="_blank" class="text-link">منصة التسجيل الإلكتروني</a>
+  <a href="${article.lienInscription || '#'}" target="_blank" rel="noopener noreferrer" class="text-link" style="display: inline-block; vertical-align: baseline;">منصة التسجيل الإلكتروني</a>
 </p>
 
 <h3>ملاحظات هامة</h3>
