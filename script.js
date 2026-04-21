@@ -244,9 +244,11 @@ function showArticleDetail(article) {
   </div>
 `) }
       
-      <!-- حاوية الإعلان الأول -->
-<div class="ad-container"><div id="container-62aeec08f830e83a3e29d72c45206a0e"></div></div>
-
+      <!-- حاوية الإعلان الأول (Native) -->
+      <div class="ad-container">
+        <div id="container-62aeec08f830e83a3e29d72c45206a0e"></div>
+      </div>
+      
       <p class="intro-text">${article.introText || article.description}</p>
       
       <h3>شروط المشاركة</h3>
@@ -345,11 +347,10 @@ function showArticleDetail(article) {
 }
 
 function loadArticleAds() {
-  // الإعلان الأول (Native Banner)
-  const adContainer1 = document.getElementById('ad-container-1');
+  // الإعلان الأول (Native Banner) - باستخدام المعرف الصحيح
+  const adContainer1 = document.getElementById('container-62aeec08f830e83a3e29d72c45206a0e');
   if (adContainer1 && !adContainer1.hasAttribute('data-ad-loaded')) {
     adContainer1.setAttribute('data-ad-loaded', 'true');
-    // إنشاء عنصر script داخل الحاوية نفسها لضمان الحقن
     const script1 = document.createElement('script');
     script1.async = true;
     script1.setAttribute('data-cfasync', 'false');
@@ -373,6 +374,7 @@ function loadArticleAds() {
     adContainer2.appendChild(script2);
   }
 }
+
 function hideArticleDetail() {
   document.querySelectorAll('.concours-section').forEach(s => s.style.display = 'block');
   document.getElementById('article-detail-section').style.display = 'none';
