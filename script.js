@@ -268,8 +268,9 @@ function showArticleDetail(article) {
       <div class="deadline-countdown"><i class="fas fa-hourglass-half"></i> <span data-deadline="${article.deadline}"></span></div>
       
       <p style="margin-top: 1.5rem;">
-  📝 للتسجيل في المباراة، المرجو زيارة الرابط التالي: 
-  <a href="${article.lienInscription || '#'}" target="_blank" rel="noopener noreferrer" class="text-link" style="display: inline-block; vertical-align: baseline;">منصة التسجيل الإلكتروني</a>
+  📝 للتسجيل المباشر في المباراة: 
+  <a href="${article.lienInscriptionDirecte || article.lienInscription || '#'}" target="_blank" rel="noopener noreferrer" class="text-link" style="display: inline-block; vertical-align: baseline;">رابط التسجيل المباشر</a>
+  ${article.lienInscriptionDirecte ? `<br><small style="color: #64748b; font-size: 0.85rem;">⚡ في حال تعطل الرابط المباشر، استعمل زر "رابط التسجيل لاجتياز المباراة" في الأسفل.</small>` : ''}
 </p>
 
 <h3>ملاحظات هامة</h3>
