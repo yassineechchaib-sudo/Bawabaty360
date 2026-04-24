@@ -324,7 +324,7 @@ window.concoursData = [
   lienInscription: "https://drh.justice.gov.ma"
 },
   { 
-  id: #, 
+  id: 104, 
   echelle: "8-9", 
   title: "تقني من الدرجة الثالثة والرابعة", 
   fullTitle: "مباراة توظيف 112 تقنياً من الدرجتين الثالثة (سلم 9) والرابعة (سلم 8) – جماعات إقليم إفران 2026", 
