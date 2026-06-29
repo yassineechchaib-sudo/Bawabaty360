@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://bawabaty360.com/sitemap.xml
+
+# Disallow admin or private areas (none for now)
+Disallow:

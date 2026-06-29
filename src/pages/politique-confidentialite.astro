@@ -1,0 +1,226 @@
+---
+// سياسة الخصوصية – صفحة ثابتة ضرورية لأدسنس
+---
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="سياسة الخصوصية لموقع بوابتي 360. تعرف على كيفية جمع بياناتك واستخدامها وحمايتها وفقاً للقوانين المغربية." />
+  <title>سياسة الخصوصية | بوابتي 360</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header id="main-header">
+    <div class="header-container">
+      <button class="hamburger" id="hamburger-btn" aria-label="القائمة">
+        <i class="fas fa-bars"></i>
+      </button>
+      <a href="/" class="logo">
+        <span class="logo-main">بوابتي</span><span class="logo-360">360</span>
+      </a>
+      <button class="dark-toggle" id="dark-toggle" aria-label="الوضع الليلي/النهاري">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">القائمة</span>
+      <button class="sidebar-close" id="sidebar-close"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <h3>الأقسام</h3>
+        <ul>
+          <li class="nav-group">
+            <span class="nav-group-title"><i class="fas fa-landmark"></i> القطاع العام</span>
+            <ul class="sub-nav">
+              <li><a href="/concours"><i class="fas fa-file-alt"></i> مباريات</a></li>
+              <li><a href="/emplois-superieurs"><i class="fas fa-user-tie"></i> مناصب عليا</a></li>
+              <li><a href="/postes-responsabilite"><i class="fas fa-briefcase"></i> مناصب المسؤولية</a></li>
+              <li><a href="/salaires-2026"><i class="fas fa-money-bill-wave"></i> الأجور 2026</a></li>
+              <li><a href="/calendrier"><i class="fas fa-calendar-alt"></i> الرزنامة 2026</a></li>
+            </ul>
+          </li>
+          <li><a href="/secteur-prive"><i class="fas fa-building"></i> القطاع الخاص</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h3>أدلة تعليمية</h3>
+        <ul>
+          <li><a href="/guide-concours"><i class="fas fa-book"></i> الدليل الشامل للمباريات</a></li>
+          <li><a href="/guide-cv"><i class="fas fa-file-alt"></i> كتابة السيرة الذاتية</a></li>
+          <li><a href="/guide-oral"><i class="fas fa-microphone-alt"></i> اجتياز الاختبارات الشفوية</a></li>
+          <li><a href="/echelles-guide"><i class="fas fa-layer-group"></i> نظام السلاليم والترقيات</a></li>
+          <li><a href="/public-vs-prive"><i class="fas fa-balance-scale"></i> القطاع العام مقابل الخاص</a></li>
+          <li><a href="/specialites-2026"><i class="fas fa-chart-line"></i> أفضل التخصصات المطلوبة</a></li>
+          <li><a href="/sans-bac"><i class="fas fa-tools"></i> وظائف بدون بكالوريا</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h3>معلومات</h3>
+        <ul>
+          <li><a href="/qui-sommes-nous"><i class="fas fa-users"></i> من نحن</a></li>
+          <li><a href="/contact"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+          <li><a href="/faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+          <li><a href="/politique-confidentialite"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h3>الإعدادات</h3>
+        <div class="settings-group">
+          <label>حجم الخط</label>
+          <div class="font-size-controls">
+            <button class="font-size-btn" data-size="small">أ-</button>
+            <button class="font-size-btn active" data-size="normal">أ</button>
+            <button class="font-size-btn" data-size="large">أ+</button>
+          </div>
+        </div>
+        <div class="settings-group">
+          <label>جهة المغرب</label>
+          <select id="region-filter" class="region-select">
+            <option value="all">جميع الجهات</option>
+            <option value="طنجة-تطوان-الحسيمة">طنجة-تطوان-الحسيمة</option>
+            <option value="الشرق">الشرق</option>
+            <option value="فاس-مكناس">فاس-مكناس</option>
+            <option value="الرباط-سلا-القنيطرة">الرباط-سلا-القنيطرة</option>
+            <option value="بني ملال-خنيفرة">بني ملال-خنيفرة</option>
+            <option value="الدار البيضاء-سطات">الدار البيضاء-سطات</option>
+            <option value="مراكش-آسفي">مراكش-آسفي</option>
+            <option value="درعة-تافيلالت">درعة-تافيلالت</option>
+            <option value="سوس-ماسة">سوس-ماسة</option>
+            <option value="كلميم-واد نون">كلميم-واد نون</option>
+            <option value="العيون-الساقية الحمراء">العيون-الساقية الحمراء</option>
+            <option value="الداخلة-وادي الذهب">الداخلة-وادي الذهب</option>
+          </select>
+        </div>
+        <div class="settings-group toggle-setting">
+          <label>عرض الأجور</label>
+          <label class="switch">
+            <input type="checkbox" id="show-salaries-toggle" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <main>
+    <h1 class="page-title">سياسة الخصوصية</h1>
+    <div class="legal-text">
+      <p><strong>آخر تحديث:</strong> 03 يونيو 2026</p>
+      
+      <h2>1. مقدمة</h2>
+      <p>مرحبًا بك في موقع <strong>بوابتي 360</strong> (bawabaty360.com). خصوصيتك مهمة جدًا بالنسبة لنا. تشرح سياسة الخصوصية هذه بالتفصيل أنواع المعلومات التي نجمعها، وكيف نستخدمها، وكيف نحميها عند زيارتك لموقعنا. باستخدامك لموقعنا، فإنك توافق على الممارسات الموضحة في هذه السياسة.</p>
+      <p>نحن ملتزمون بحماية بياناتك الشخصية والامتثال لقوانين الخصوصية المعمول بها، بما في ذلك القانون المغربي رقم 09-08، واللائحة العامة لحماية البيانات (GDPR) للاتحاد الأوروبي، وقانون خصوصية المستهلك في كاليفورنيا (CCPA) حيثما ينطبق ذلك. إذا كانت لديك أي أسئلة حول هذه السياسة، يمكنك <a href="/contact">الاتصال بنا</a>.</p>
+
+      <h2>2. البيانات التي نقوم بجمعها</h2>
+      <p>نقوم بجمع نوعين من البيانات:</p>
+      <ul>
+        <li><strong>البيانات الشخصية (مقدمة طوعًا):</strong> عندما تستخدم <a href="/contact">نموذج الاتصال</a>، قد نطلب منك تقديم معلومات مثل الاسم وعنوان البريد الإلكتروني. أنت تقدم هذه المعلومات بمحض إرادتك، وتُستخدم حصريًا للرد على استفسارك.</li>
+        <li><strong>البيانات غير الشخصية (التقنية والإحصائية):</strong> يتم جمعها تلقائيًا بواسطة خدمات الطرف الثالث مثل Google Analytics وقد تتضمن عنوان IP، نوع المتصفح، نظام التشغيل، الصفحات التي تزورها، الوقت والتاريخ، وغيرها من بيانات الاستخدام. هذه البيانات إحصائية ولا تسمح بالتعرف عليك شخصيًا.</li>
+      </ul>
+
+      <h2>3. ملفات تعريف الارتباط (Cookies)</h2>
+      <p>يستخدم موقعنا "ملفات تعريف الارتباط" (Cookies) لتحسين تجربة التصفح. ملفات تعريف الارتباط هي ملفات نصية صغيرة يخزنها متصفحك على جهازك. نحن نستخدم الأنواع التالية من الكوكيز:</p>
+      <ul>
+        <li><strong>كوكيز ضرورية (Essential):</strong> ضرورية لتشغيل الموقع بشكل صحيح، مثل تذكر تفضيلات الوضع الليلي أو حجم الخط. لا يمكن تعطيلها.</li>
+        <li><strong>كوكيز تحليلية (Analytics):</strong> تُستخدم بواسطة أدوات مثل Google Analytics لتحليل أداء الموقع وحركة المرور. تساعدنا في فهم كيفية تفاعل الزوار مع الموقع.</li>
+        <li><strong>كوكيز إعلانية (Advertising):</strong> تُستخدم بواسطة Google AdSense والأطراف الثالثة لعرض إعلانات مخصصة بناءً على اهتماماتك. يتم استخدام <strong>كوكيز DART</strong> الخاصة بـ Google.</li>
+      </ul>
+
+      <h2>4. جوجل أدسنس (Google AdSense) والإعلانات</h2>
+      <p>يستخدم هذا الموقع خدمة <strong>Google AdSense</strong> لعرض الإعلانات. بصفتها مورّدًا خارجيًا، تستخدم Google كوكيز DART لعرض إعلانات لزوارنا بناءً على زيارتهم لموقعنا ومواقع أخرى على الإنترنت. يمكنك إلغاء الاشتراك في استخدام كوكيز DART من خلال زيارة صفحة سياسة خصوصية الإعلانات والمحتوى لشبكة Google:</p>
+      <p><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">https://policies.google.com/technologies/ads</a></p>
+      
+      <p>يجوز لمورّدي الطرف الثالث، بما فيهم Google، استخدام الكوكيز لعرض الإعلانات بناءً على زياراتك السابقة لموقعنا أو لمواقع أخرى. يمكنك اختيار تعطيل الإعلانات المخصصة من خلال زيارة صفحة إلغاء الاشتراك في الإعلانات:</p>
+      <p><a href="https://optout.aboutads.info" target="_blank" rel="noopener">https://optout.aboutads.info</a></p>
+      
+      <p>للاطلاع على كيفية تعامل Google مع بياناتك، يمكنك مراجعة سياسة خصوصية Google:</p>
+      <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a></p>
+
+      <h2>5. جوجل أناليتكس (Google Analytics)</h2>
+      <p>نحن نستخدم Google Analytics لتحليل حركة المرور على الموقع. يستخدم Analytics كوكيز لجمع معلومات غير شخصية. يمكنك معرفة المزيد حول كيفية جمع Google للبيانات ومعالجتها من خلال الرابط التالي: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">سياسة خصوصية Google</a>.</p>
+
+      <h2>6. الأطراف الثالثة (Third Parties)</h2>
+      <p>قد نستخدم خدمات أطراف ثالثة مثل Google AdSense و Google Analytics. هذه الأطراف قد تضع كوكيز على جهازك أو تستخدم تقنيات تتبع أخرى. نحن لا نتحكم في هذه الكوكيز. ننصحك بمراجعة سياسات الخصوصية الخاصة بهذه الأطراف:</p>
+      <ul>
+        <li>Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a></li>
+      </ul>
+
+      <h2>7. حقوق المستخدمين بموجب القوانين المختلفة</h2>
+      
+      <h3>7.1 القانون المغربي رقم 09-08</h3>
+      <p>بصفتنا موقعًا مقره المغرب، نحن ملتزمون بأحكام القانون رقم 09-08 المتعلق بحماية الأشخاص الذاتيين تجاه معالجة المعطيات ذات الطابع الشخصي. يحق لك الوصول إلى بياناتك الشخصية وتصحيحها والاعتراض على معالجتها. لممارسة هذه الحقوق، يرجى <a href="/contact">الاتصال بنا</a>.</p>
+
+      <h3>7.2 اللائحة العامة لحماية البيانات (GDPR) – للزوار الأوروبيين</h3>
+      <p>إذا كنت مقيمًا في المنطقة الاقتصادية الأوروبية (EEA)، فلديك الحقوق التالية بموجب اللائحة العامة لحماية البيانات:</p>
+      <ul>
+        <li><strong>حق الوصول:</strong> يمكنك طلب نسخة من بياناتك الشخصية.</li>
+        <li><strong>حق التصحيح:</strong> يمكنك طلب تصحيح أي بيانات غير دقيقة.</li>
+        <li><strong>حق الحذف:</strong> يمكنك طلب حذف بياناتك ("الحق في النسيان").</li>
+        <li><strong>حق الاعتراض:</strong> يمكنك الاعتراض على معالجة بياناتك.</li>
+        <li><strong>حق إمكانية النقل:</strong> يمكنك طلب نقل بياناتك إلى طرف آخر.</li>
+      </ul>
+      <p>لممارسة أي من هذه الحقوق، يُرجى <a href="/contact">الاتصال بنا</a>. سنرد على طلبك في غضون 30 يومًا.</p>
+
+      <h3>7.3 قانون خصوصية المستهلك في كاليفورنيا (CCPA) – للمقيمين في كاليفورنيا</h3>
+      <p>إذا كنت مقيماً في ولاية كاليفورنيا، يحق لك:</p>
+      <ul>
+        <li>معرفة فئات البيانات الشخصية التي يتم جمعها.</li>
+        <li>طلب حذف بياناتك الشخصية.</li>
+        <li>عدم بيع بياناتك الشخصية (نحن لا نبيع البيانات).</li>
+      </ul>
+      <p>للتقدم بطلب بموجب CCPA، يُرجى <a href="/contact">الاتصال بنا</a>.</p>
+
+      <h2>8. إشارة "عدم التتبع" (Do Not Track)</h2>
+      <p>موقعنا يحترم إشارة "عدم التتبع" (DNT) التي يمكنك تفعيلها في إعدادات متصفحك. عند تفعيل هذه الإشارة، لن نقوم بتتبع نشاطك لأغراض إعلانية أو تحليلية.</p>
+
+      <h2>9. أمان البيانات</h2>
+      <p>نحن نتخذ إجراءات أمنية معقولة لحماية بياناتك. مع ذلك، لا يمكن ضمان أمان أي وسيلة نقل عبر الإنترنت أو تخزين إلكتروني بنسبة 100%. نحن نبذل قصارى جهدنا لحماية معلوماتك، لكن لا يمكننا ضمان الأمان المطلق.</p>
+
+      <h2>10. روابط المواقع الخارجية</h2>
+      <p>قد يحتوي موقعنا على روابط لمواقع خارجية (مثل مواقع الوزارات ومنصات التسجيل). نحن لسنا مسؤولين عن سياسات الخصوصية أو محتوى هذه المواقع. ننصحك بمراجعة سياسة الخصوصية لأي موقع تزوره.</p>
+
+      <h2>11. تحديثات السياسة</h2>
+      <p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. أي تغييرات ستنشر على هذه الصفحة مع تحديث "تاريخ آخر تعديل" في الأعلى. ننصحك بمراجعة هذه الصفحة دورياً للبقاء على اطلاع.</p>
+
+      <h2>12. اتصل بنا</h2>
+      <p>إذا كانت لديك أي أسئلة أو استفسارات حول سياسة الخصوصية هذه، يمكنك التواصل معنا عبر:</p>
+      <ul>
+        <li><strong>البريد الإلكتروني:</strong> contact@bawabaty360.com</li>
+        <li><strong>صفحة الاتصال:</strong> <a href="/contact">https://bawabaty360.com/contact</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="logo-main">بوابتي</span><span class="logo-360">360</span>
+      </div>
+      <div class="footer-links">
+        <a href="/contact">اتصل بنا</a>
+        <a href="/faq">الأسئلة الشائعة</a>
+        <a href="/politique-confidentialite">الخصوصية</a>
+        <a href="/terms">شروط الاستخدام</a>
+        <a href="/sitemap.xml">خريطة الموقع</a>
+      </div>
+      <p class="copyright">© 2026 بوابتي 360 - جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>
+
+  <script is:inline src="/data.js"></script>
+  <script is:inline src="/script.js"></script>
+</body>
+</html>
