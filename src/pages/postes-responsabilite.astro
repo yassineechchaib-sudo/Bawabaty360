@@ -14,6 +14,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="/style.css" />
+  <style is:inline>
+    .collapsible-wrapper {
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light, #ddd);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .collapsible-btn {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg-secondary, #f9f9f9);
+      border: none;
+      text-align: right;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: inherit;
+      color: inherit;
+    }
+    .collapsible-btn:hover {
+      background: var(--bg-hover, #f0f0f0);
+    }
+    .collapsible-btn .fa-chevron-down {
+      transition: transform 0.3s;
+    }
+    .collapsible-btn.active .fa-chevron-down {
+      transform: rotate(180deg);
+    }
+    .collapsible-content {
+      padding: 1rem;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <header id="main-header">
@@ -114,18 +150,26 @@
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
   <main>
-  <!-- المحتوى الثابت التعريفي - مرئي للجميع -->
-  <section class="static-intro">
-    <h1>مناصب المسؤولية في الوظيفة العمومية المغربية</h1>
-    <p>مرحبًا بكم في صفحة مناصب المسؤولية الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات مناصب المسؤولية في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. مناصب المسؤولية هي مناصب إدارية وتقنية حيوية تشمل رؤساء مصالح، رؤساء أقسام، وأطر التدبير والتسيير في مختلف الوزارات والمؤسسات العمومية.</p>
-    
-    <h2>أحدث مناصب المسؤولية المعلنة</h2>
-    <ul>
-      <li>منصب رئيس قسم الحياة الحضرية – مجلس جماعة الدار البيضاء – عمالة الدار البيضاء – آخر أجل 23 يونيو 2026</li>
-      <li>منصب رئيس مصلحة الإحصاءات والحسابات الجهوية – المندوبية السامية للتخطيط (HCP) – آخر أجل 25 ماي 2026</li>
-      <li>منصب رئيس مصلحة التدقيق – الوكالة المغربية للأدوية والمنتجات الصحية (AMMPS) – آخر أجل 24 ماي 2026</li>
-    </ul>
-  </section>
+  <!-- المحتوى الثابت مطوي خلف زر -->
+  <div class="collapsible-wrapper">
+    <button class="collapsible-btn" id="toggle-static-intro">
+      <span>📋 معلومات عن مناصب المسؤولية</span>
+      <i class="fas fa-chevron-down" id="toggle-icon"></i>
+    </button>
+    <div class="collapsible-content" id="static-intro-content">
+      <section class="static-intro">
+        <h1>مناصب المسؤولية في الوظيفة العمومية المغربية</h1>
+        <p>مرحبًا بكم في صفحة مناصب المسؤولية الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات مناصب المسؤولية في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. مناصب المسؤولية هي مناصب إدارية وتقنية حيوية تشمل رؤساء مصالح، رؤساء أقسام، وأطر التدبير والتسيير في مختلف الوزارات والمؤسسات العمومية.</p>
+        
+        <h2>أحدث مناصب المسؤولية المعلنة</h2>
+        <ul>
+          <li>منصب رئيس قسم الحياة الحضرية – مجلس جماعة الدار البيضاء – عمالة الدار البيضاء – آخر أجل 23 يونيو 2026</li>
+          <li>منصب رئيس مصلحة الإحصاءات والحسابات الجهوية – المندوبية السامية للتخطيط (HCP) – آخر أجل 25 ماي 2026</li>
+          <li>منصب رئيس مصلحة التدقيق – الوكالة المغربية للأدوية والمنتجات الصحية (AMMPS) – آخر أجل 24 ماي 2026</li>
+        </ul>
+      </section>
+    </div>
+  </div>
 
   <h1 class="page-title">مناصب المسؤولية</h1>
   <p class="page-intro">رؤساء مصالح، رؤساء أقسام: مناصب المسؤولية في الإدارة العمومية.</p>
@@ -161,6 +205,23 @@
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function() {
       if (typeof initPostesResponsabilite === 'function') initPostesResponsabilite();
+      
+      // نظام الطي
+      const btn = document.getElementById('toggle-static-intro');
+      const content = document.getElementById('static-intro-content');
+      if (btn && content) {
+        content.style.display = 'none'; // مطوي افتراضيًا
+        btn.classList.remove('active');
+        btn.addEventListener('click', function() {
+          if (content.style.display === 'none') {
+            content.style.display = 'block';
+            btn.classList.add('active');
+          } else {
+            content.style.display = 'none';
+            btn.classList.remove('active');
+          }
+        });
+      }
     });
   </script>
 </body>
