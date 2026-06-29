@@ -14,6 +14,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="/style.css" />
+  <style is:inline>
+    .collapsible-wrapper {
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light, #ddd);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .collapsible-btn {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg-secondary, #f9f9f9);
+      border: none;
+      text-align: right;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: inherit;
+      color: inherit;
+    }
+    .collapsible-btn:hover {
+      background: var(--bg-hover, #f0f0f0);
+    }
+    .collapsible-btn .fa-chevron-down {
+      transition: transform 0.3s;
+    }
+    .collapsible-btn.active .fa-chevron-down {
+      transform: rotate(180deg);
+    }
+    .collapsible-content {
+      padding: 1rem;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <header id="main-header">
@@ -114,18 +150,26 @@
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
 <main>
-  <!-- المحتوى الثابت التعريفي - مرئي للجميع -->
-  <section class="static-intro">
-    <h1>المناصب العليا في الوظيفة العمومية المغربية</h1>
-    <p>مرحبًا بكم في صفحة المناصب العليا الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات المناصب العليا والقيادية في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. المناصب العليا هي مناصب استراتيجية تشمل مدراء مركزيين، رؤساء أقسام، كتاب عامين، ومدراء مؤسسات عمومية.</p>
-    
-    <h2>أحدث المناصب العليا المعلنة</h2>
-    <ul>
-      <li>منصب مدير المعهد الوطني العالي للموسيقى والفن الكوريغرافي – وزارة الشباب والثقافة والتواصل – آخر أجل 25 ماي 2026</li>
-      <li>منصب مدير المدرسة المحمدية للمهندسين بالرباط – وزارة التعليم العالي – آخر أجل 26 يونيو 2026</li>
-      <li>منصب مدير عام الانتقال الرقمي – وزارة الانتقال الرقمي وإصلاح الإدارة – آخر أجل 15 يونيو 2026</li>
-    </ul>
-  </section>
+  <!-- المحتوى الثابت مطوي خلف زر -->
+  <div class="collapsible-wrapper">
+    <button class="collapsible-btn" id="toggle-static-intro">
+      <span>📋 معلومات عن المناصب العليا</span>
+      <i class="fas fa-chevron-down" id="toggle-icon"></i>
+    </button>
+    <div class="collapsible-content" id="static-intro-content">
+      <section class="static-intro">
+        <h1>المناصب العليا في الوظيفة العمومية المغربية</h1>
+        <p>مرحبًا بكم في صفحة المناصب العليا الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات المناصب العليا والقيادية في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. المناصب العليا هي مناصب استراتيجية تشمل مدراء مركزيين، رؤساء أقسام، كتاب عامين، ومدراء مؤسسات عمومية.</p>
+        
+        <h2>أحدث المناصب العليا المعلنة</h2>
+        <ul>
+          <li>منصب مدير المعهد الوطني العالي للموسيقى والفن الكوريغرافي – وزارة الشباب والثقافة والتواصل – آخر أجل 25 ماي 2026</li>
+          <li>منصب مدير المدرسة المحمدية للمهندسين بالرباط – وزارة التعليم العالي – آخر أجل 26 يونيو 2026</li>
+          <li>منصب مدير عام الانتقال الرقمي – وزارة الانتقال الرقمي وإصلاح الإدارة – آخر أجل 15 يونيو 2026</li>
+        </ul>
+      </section>
+    </div>
+  </div>
 
   <h1 class="page-title">المناصب العليا</h1>
   <p class="page-intro">مناصب عليا في الوظيفة العمومية: كتاب عامون، مدراء مركزيون، رؤساء أقسام.</p>
@@ -160,6 +204,23 @@
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function() {
       if (typeof initEmploisSuperieurs === 'function') initEmploisSuperieurs();
+      
+      // نظام الطي
+      const btn = document.getElementById('toggle-static-intro');
+      const content = document.getElementById('static-intro-content');
+      if (btn && content) {
+        content.style.display = 'none'; // مطوي افتراضيًا
+        btn.classList.remove('active');
+        btn.addEventListener('click', function() {
+          if (content.style.display === 'none') {
+            content.style.display = 'block';
+            btn.classList.add('active');
+          } else {
+            content.style.display = 'none';
+            btn.classList.remove('active');
+          }
+        });
+      }
     });
   </script>
 </body>
