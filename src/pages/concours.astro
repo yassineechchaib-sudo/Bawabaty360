@@ -216,6 +216,12 @@
 
   <main class="concours-page">
     <!-- المحتوى الثابت لتحسين الأرشفة وAdSense -->
+    <div class="collapsible-wrapper">
+  <button class="collapsible-btn" id="toggle-static-intro">
+    <span>📋 معلومات عامة عن المباريات</span>
+    <i class="fas fa-chevron-down" id="toggle-icon"></i>
+  </button>
+  <div class="collapsible-content" id="static-intro-content">
     <section class="static-intro">
       <h1>مباريات التوظيف العمومي في المغرب</h1>
       <p>مرحبًا بكم في صفحة المباريات الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات التوظيف في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. نوفر لكم معلومات دقيقة ومتكاملة عن شروط الترشيح، ملف الترشيح، مواعيد الاختبارات، وروابط التسجيل المباشرة.</p>
@@ -233,6 +239,8 @@
         <li>مباراة توظيف متصرفين من الدرجة الثالثة (سلم 10) – وزارة التضامن – آخر أجل 25 ماي 2026</li>
       </ul>
     </section>
+  </div>
+</div>
 
     <!-- المحتوى الديناميكي -->
     <h1 class="page-title">مباريات القطاع العام</h1>
@@ -344,6 +352,58 @@
       }
     }
   })();
+</script>
+<style is:inline>
+  .collapsible-wrapper {
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-light, #ddd);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .collapsible-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary, #f9f9f9);
+    border: none;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    color: inherit;
+  }
+  .collapsible-btn:hover {
+    background: var(--bg-hover, #f0f0f0);
+  }
+  .collapsible-btn .fa-chevron-down {
+    transition: transform 0.3s;
+  }
+  .collapsible-btn.active .fa-chevron-down {
+    transform: rotate(180deg);
+  }
+  .collapsible-content {
+    padding: 1rem;
+    display: block;
+  }
+  .collapsible-content.hidden {
+    display: none;
+  }
+</style>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('toggle-static-intro');
+    const content = document.getElementById('static-intro-content');
+    const icon = document.getElementById('toggle-icon');
+    if (btn && content) {
+      btn.addEventListener('click', function() {
+        content.classList.toggle('hidden');
+        btn.classList.toggle('active');
+      });
+    }
+  });
 </script>
 </body>
 </html>
