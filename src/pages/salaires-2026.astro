@@ -15,6 +15,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="/style.css" />
+  <style is:inline>
+    .collapsible-wrapper {
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light, #ddd);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .collapsible-btn {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg-secondary, #f9f9f9);
+      border: none;
+      text-align: right;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: inherit;
+      color: inherit;
+    }
+    .collapsible-btn:hover {
+      background: var(--bg-hover, #f0f0f0);
+    }
+    .collapsible-btn .fa-chevron-down {
+      transition: transform 0.3s;
+    }
+    .collapsible-btn.active .fa-chevron-down {
+      transform: rotate(180deg);
+    }
+    .collapsible-content {
+      padding: 1rem;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <header id="main-header">
@@ -115,21 +151,29 @@
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
   <main>
-    <!-- المحتوى الثابت التعريفي -->
-    <section class="static-intro">
-      <h1>جدول أجور الوظيفة العمومية المغربية 2026</h1>
-      <p>مرحبًا بكم في صفحة الأجور الرسمية لبوابتي 360. نقدم لكم جدولاً محدثاً لأجور الوظيفة العمومية في المغرب لسنة 2026. يشمل الجدول جميع السلاليم من 6 إلى 11 مع الدرجات والأرقام الاستدلالية والأجور الأساسية والتعويضات التقريبية. هذه المعلومات تساعدكم في التخطيط المالي لمساركم المهني واتخاذ قرارات مستنيرة.</p>
-      <h2>أهم النقاط حول الأجور</h2>
-      <ul>
-        <li>السلم 6: الأجر الأساسي يبدأ من 2,780 درهم (الدرجة الثانية) ويصل إلى 4,440 درهم (الدرجة الممتازة).</li>
-        <li>السلم 7: الأجر الأساسي يبدأ من 3,350 درهم ويصل إلى 5,200 درهم.</li>
-        <li>السلم 8: الأجر الأساسي يبدأ من 4,050 درهم ويصل إلى 6,150 درهم.</li>
-        <li>السلم 9: الأجر الأساسي يبدأ من 4,980 درهم ويصل إلى 7,520 درهم.</li>
-        <li>السلم 10: الأجر الأساسي يبدأ من 5,800 درهم ويصل إلى 8,660 درهم.</li>
-        <li>السلم 11: الأجر الأساسي يبدأ من 6,680 درهم ويصل إلى 10,200 درهم.</li>
-      </ul>
-      <p>ملاحظة: الأجور المذكورة هي الأجر الأساسي دون التعويضات. يضاف إليها تعويضات السكن والنقل والمردودية التي ترفع الأجر الإجمالي بنسبة 30% إلى 60% حسب القطاع والمنصب.</p>
-    </section>
+    <!-- المحتوى الثابت مطوي خلف زر -->
+    <div class="collapsible-wrapper">
+      <button class="collapsible-btn" id="toggle-static-intro">
+        <span>📋 معلومات عن الأجور والوظيفة العمومية</span>
+        <i class="fas fa-chevron-down" id="toggle-icon"></i>
+      </button>
+      <div class="collapsible-content" id="static-intro-content">
+        <section class="static-intro">
+          <h1>جدول أجور الوظيفة العمومية المغربية 2026</h1>
+          <p>مرحبًا بكم في صفحة الأجور الرسمية لبوابتي 360. نقدم لكم جدولاً محدثاً لأجور الوظيفة العمومية في المغرب لسنة 2026. يشمل الجدول جميع السلاليم من 6 إلى 11 مع الدرجات والأرقام الاستدلالية والأجور الأساسية والتعويضات التقريبية. هذه المعلومات تساعدكم في التخطيط المالي لمساركم المهني واتخاذ قرارات مستنيرة.</p>
+          <h2>أهم النقاط حول الأجور</h2>
+          <ul>
+            <li>السلم 6: الأجر الأساسي يبدأ من 2,780 درهم (الدرجة الثانية) ويصل إلى 4,440 درهم (الدرجة الممتازة).</li>
+            <li>السلم 7: الأجر الأساسي يبدأ من 3,350 درهم ويصل إلى 5,200 درهم.</li>
+            <li>السلم 8: الأجر الأساسي يبدأ من 4,050 درهم ويصل إلى 6,150 درهم.</li>
+            <li>السلم 9: الأجر الأساسي يبدأ من 4,980 درهم ويصل إلى 7,520 درهم.</li>
+            <li>السلم 10: الأجر الأساسي يبدأ من 5,800 درهم ويصل إلى 8,660 درهم.</li>
+            <li>السلم 11: الأجر الأساسي يبدأ من 6,680 درهم ويصل إلى 10,200 درهم.</li>
+          </ul>
+          <p>ملاحظة: الأجور المذكورة هي الأجر الأساسي دون التعويضات. يضاف إليها تعويضات السكن والنقل والمردودية التي ترفع الأجر الإجمالي بنسبة 30% إلى 60% حسب القطاع والمنصب.</p>
+        </section>
+      </div>
+    </div>
 
     <h1 class="page-title">الأجور 2026 - الوظيفة العمومية</h1>
     
@@ -209,6 +253,23 @@
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function() {
       if (typeof initSalaires === 'function') initSalaires();
+      
+      // نظام الطي
+      const btn = document.getElementById('toggle-static-intro');
+      const content = document.getElementById('static-intro-content');
+      if (btn && content) {
+        content.style.display = 'none'; // مطوي افتراضيًا
+        btn.classList.remove('active');
+        btn.addEventListener('click', function() {
+          if (content.style.display === 'none') {
+            content.style.display = 'block';
+            btn.classList.add('active');
+          } else {
+            content.style.display = 'none';
+            btn.classList.remove('active');
+          }
+        });
+      }
     });
   </script>
 </body>
