@@ -2,6 +2,7 @@
 // --- CONCOURS_DATA_START ---
 window.concoursData = [
 { 
+  analyse: "",
   id: 1, 
   echelle: 6, 
   title: "مساعد إداري من الدرجة الثالثة", 
@@ -56,6 +57,7 @@ window.concoursData = [
   lienInscriptionDirecte: "https://www.emploi-public.ma/ar/تفاصيل/المباريات/a65f3db8-60fd-4f3b-85f7-dfdc8b6fed90"
 },
  { 
+   analyse: "",
   id: 2, 
   echelle: 6, 
   title: "مساعد تقني من الدرجة الثالثة", 
