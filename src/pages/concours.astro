@@ -333,6 +333,7 @@
         if (detailContent) {
           // بناء HTML تفاصيل الوظيفة (مبسط)
           detailContent.innerHTML = `
+            <div class="analyse-bawabaty"><strong>📊 تحليل بوابتي 360:</strong> ${job.analyse || "فرصة ممتازة لحاملي الشهادات المطلوبة. ننصح بالاطلاع على الشروط بدقة والتسجيل المبكر."}</div>
             <h1>${job.title}</h1>
             <p><strong>القطاع:</strong> ${job.secteur || 'غير محدد'}</p>
             <p><strong>الجهة:</strong> ${job.region || 'غير محددة'}</p>
