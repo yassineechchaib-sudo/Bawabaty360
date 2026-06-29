@@ -316,5 +316,33 @@
       if (typeof initConcours === 'function') initConcours();
     });
   </script>
+<script is:inline>
+  // معالجة عرض تفاصيل المباراة عند وجود ?id= في الرابط
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id && window.allJobs) {
+      const job = window.allJobs.find(j => j.id == id);
+      if (job) {
+        // إخفاء جميع أقسام القوائم
+        document.querySelectorAll('.concours-section, .page-title, .static-intro').forEach(el => el.style.display = 'none');
+        // إظهار قسم التفاصيل
+        const detailSection = document.getElementById('article-detail-section');
+        if (detailSection) detailSection.style.display = 'block';
+        const detailContent = document.getElementById('article-detail-content');
+        if (detailContent) {
+          // بناء HTML تفاصيل الوظيفة (مبسط)
+          detailContent.innerHTML = `
+            <h1>${job.title}</h1>
+            <p><strong>القطاع:</strong> ${job.secteur || 'غير محدد'}</p>
+            <p><strong>الجهة:</strong> ${job.region || 'غير محددة'}</p>
+            <p><strong>آخر أجل:</strong> ${job.dateLimite || 'غير محدد'}</p>
+            <div>${job.content || job.description || ''}</div>
+          `;
+        }
+      }
+    }
+  })();
+</script>
 </body>
 </html>
