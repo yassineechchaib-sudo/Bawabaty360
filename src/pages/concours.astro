@@ -447,26 +447,15 @@
   }
 </style>
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.getElementById('toggle-static-intro');
-    const content = document.getElementById('static-intro-content');
-    const icon = document.getElementById('toggle-icon');
-    if (btn && content) {
-      // نبدأ مخفيين
-      content.style.display = 'none';
-      btn.classList.remove('active');
-      
-      btn.addEventListener('click', function() {
-        if (content.style.display === 'none') {
-          content.style.display = 'block';
-          btn.classList.add('active');
-        } else {
-          content.style.display = 'none';
-          btn.classList.remove('active');
-        }
-      });
+  // إعادة توجيه ?id= القديمة إلى الصفحات الثابتة الجديدة
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id) {
+      // إعادة توجيه فورية إلى الصفحة الجديدة
+      window.location.replace('/concours/' + id);
     }
-  });
+  })();
 </script>
 </body>
 </html>
