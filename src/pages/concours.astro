@@ -368,7 +368,24 @@
       <p class="copyright">© 2026 بوابتي 360 - جميع الحقوق محفوظة</p>
     </div>
   </footer>
+  <script is:inline>
+  // حل دائم لتحويل روابط المباريات القديمة إلى الشكل الجديد
+  function fixConcoursLinks() {
+    document.querySelectorAll('a[href*="concours.html?id="]').forEach(function(link) {
+      var id = link.getAttribute('href').split('?id=')[1];
+      if (id) link.setAttribute('href', '/concours/' + id);
+    });
+  }
 
+  // 1. تشغيل الإصلاح كل نصف ثانية لضمان التقاط أي بطاقة تُضاف متأخراً
+  setInterval(fixConcoursLinks, 500);
+
+  // 2. أيضاً باستخدام MutationObserver لمزيد من الدقة والفورية
+  var observer = new MutationObserver(function(mutations) {
+    fixConcoursLinks();
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+</script>
   <button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>
 
   <script is:inline src="/data.js"></script>
