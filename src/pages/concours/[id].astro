@@ -216,6 +216,17 @@ const jsonLd = {
 
   <button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>
   <script is:inline src="/data.js"></script>
+  <script is:inline>
+    // تعريض المتغيرات الضرورية على window للتوافق مع script.js
+    if (typeof concoursData !== 'undefined') window.concoursData = concoursData;
+    if (typeof emploisSuperieursData !== 'undefined') window.emploisSuperieursData = emploisSuperieursData;
+    if (typeof postesRespData !== 'undefined') window.postesRespData = postesRespData;
+    if (typeof privateOffers !== 'undefined') window.privateOffers = privateOffers;
+    if (typeof salaryData !== 'undefined') window.salaryData = salaryData;
+    if (typeof calendarData !== 'undefined') window.calendarData = calendarData;
+    if (typeof faqData !== 'undefined') window.faqData = faqData;
+    if (typeof allJobs !== 'undefined') window.allJobs = allJobs;
+  </script>
   <script is:inline src="/script.js"></script>
 </body>
 </html>
