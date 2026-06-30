@@ -1,5 +1,5 @@
 ---
-// المناصب العليا – صفحة ثابتة مع محتوى ديناميكي
+// المناصب العليا – صفحة ثابتة مع محتوى موسع
 ---
 
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="اكتشف أحدث المناصب العليا والقيادية في الوزارات والمؤسسات العمومية المغربية. مناصب مدراء ورؤساء أقسام وكتاب عامين." />
+  <meta name="description" content="كل ما تحتاج معرفته عن المناصب العليا في الوظيفة العمومية المغربية: شروط الترشح، نظام التعيين، الرواتب، وأحدث الإعلانات." />
   <title>المناصب العليا | بوابتي 360</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -104,83 +104,63 @@
         <h3>معلومات</h3>
         <ul>
           <li><a href="/qui-sommes-nous"><i class="fas fa-users"></i> من نحن</a></li>
+          <li><a href="/equipe"><i class="fas fa-user-circle"></i> فريق العمل</a></li>
           <li><a href="/contact"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
           <li><a href="/faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
           <li><a href="/politique-confidentialite"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
         </ul>
       </div>
-      <div class="nav-section">
-        <h3>الإعدادات</h3>
-        <div class="settings-group">
-          <label>حجم الخط</label>
-          <div class="font-size-controls">
-            <button class="font-size-btn" data-size="small">أ-</button>
-            <button class="font-size-btn active" data-size="normal">أ</button>
-            <button class="font-size-btn" data-size="large">أ+</button>
-          </div>
-        </div>
-        <div class="settings-group">
-          <label>جهة المغرب</label>
-          <select id="region-filter" class="region-select">
-            <option value="all">جميع الجهات</option>
-            <option value="طنجة-تطوان-الحسيمة">طنجة-تطوان-الحسيمة</option>
-            <option value="الشرق">الشرق</option>
-            <option value="فاس-مكناس">فاس-مكناس</option>
-            <option value="الرباط-سلا-القنيطرة">الرباط-سلا-القنيطرة</option>
-            <option value="بني ملال-خنيفرة">بني ملال-خنيفرة</option>
-            <option value="الدار البيضاء-سطات">الدار البيضاء-سطات</option>
-            <option value="مراكش-آسفي">مراكش-آسفي</option>
-            <option value="درعة-تافيلالت">درعة-تافيلالت</option>
-            <option value="سوس-ماسة">سوس-ماسة</option>
-            <option value="كلميم-واد نون">كلميم-واد نون</option>
-            <option value="العيون-الساقية الحمراء">العيون-الساقية الحمراء</option>
-            <option value="الداخلة-وادي الذهب">الداخلة-وادي الذهب</option>
-          </select>
-        </div>
-        <div class="settings-group toggle-setting">
-          <label>عرض الأجور</label>
-          <label class="switch">
-            <input type="checkbox" id="show-salaries-toggle" checked />
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
     </nav>
   </div>
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-<main>
-  <!-- المحتوى الثابت مطوي خلف زر -->
-  <div class="collapsible-wrapper">
-    <button class="collapsible-btn" id="toggle-static-intro">
-      <span>📋 معلومات عن المناصب العليا</span>
-      <i class="fas fa-chevron-down" id="toggle-icon"></i>
-    </button>
-    <div class="collapsible-content" id="static-intro-content">
-      <section class="static-intro">
-        <h1>المناصب العليا في الوظيفة العمومية المغربية</h1>
-        <p>مرحبًا بكم في صفحة المناصب العليا الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات المناصب العليا والقيادية في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. المناصب العليا هي مناصب استراتيجية تشمل مدراء مركزيين، رؤساء أقسام، كتاب عامين، ومدراء مؤسسات عمومية.</p>
-        
-        <h2>أحدث المناصب العليا المعلنة</h2>
-        <ul>
-          <li>منصب مدير المعهد الوطني العالي للموسيقى والفن الكوريغرافي – وزارة الشباب والثقافة والتواصل – آخر أجل 25 ماي 2026</li>
-          <li>منصب مدير المدرسة المحمدية للمهندسين بالرباط – وزارة التعليم العالي – آخر أجل 26 يونيو 2026</li>
-          <li>منصب مدير عام الانتقال الرقمي – وزارة الانتقال الرقمي وإصلاح الإدارة – آخر أجل 15 يونيو 2026</li>
-        </ul>
-      </section>
+  <main>
+    <!-- محتوى ثابت موسع -->
+    <div class="collapsible-wrapper">
+      <button class="collapsible-btn" id="toggle-static-intro">
+        <span>📋 دليل المناصب العليا</span>
+        <i class="fas fa-chevron-down" id="toggle-icon"></i>
+      </button>
+      <div class="collapsible-content" id="static-intro-content">
+        <section class="static-intro">
+          <h1>المناصب العليا في الوظيفة العمومية المغربية</h1>
+          <p>مرحبًا بكم في صفحة المناصب العليا الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات المناصب العليا والقيادية في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. المناصب العليا هي مناصب استراتيجية تشمل مدراء مركزيين، رؤساء أقسام، كتاب عامين، ومدراء مؤسسات عمومية.</p>
+          
+          <h2>ما هي المناصب العليا؟</h2>
+          <p>المناصب العليا هي مناصب قيادية في الإدارة العمومية تُسند إلى كفاءات ذات خبرة واسعة لإدارة مؤسسات أو قطاعات حيوية. شاغلو هذه المناصب لهم سلطة إدارية ومالية واسعة ويُعيّنون بظهائر أو مراسيم ملكية.</p>
+          
+          <h2>كيف يتم التعيين في المناصب العليا؟</h2>
+          <ul>
+            <li>يتم الإعلان عن شغور منصب عالٍ عبر الجريدة الرسمية أو بوابة التشغيل العمومي.</li>
+            <li>يتقدم المرشحون بملفاتهم (غالباً ما يُشترط 10 سنوات خبرة في الإدارة).</li>
+            <li>تدرس لجنة مختصة الملفات وتُجري مقابلات.</li>
+            <li>يُعيّن المرشح الناجح بقرار من رئيس الحكومة أو الوزير الوصي.</li>
+          </ul>
+          
+          <h2>الراتب والمزايا</h2>
+          <p>تتراوح رواتب شاغلي المناصب العليا بين 15,000 و35,000 درهم شهرياً حسب المنصب والقطاع، بالإضافة إلى امتيازات كالسكن الوظيفي وسيارة المصلحة وتغطية صحية شاملة.</p>
+          
+          <h2>أحدث المناصب العليا المعلنة</h2>
+          <ul>
+            <li>منصب مدير المعهد الوطني العالي للموسيقى والفن الكوريغرافي – وزارة الشباب والثقافة والتواصل – آخر أجل 25 ماي 2026</li>
+            <li>منصب مدير المدرسة المحمدية للمهندسين بالرباط – وزارة التعليم العالي – آخر أجل 26 يونيو 2026</li>
+            <li>منصب مدير عام الانتقال الرقمي – وزارة الانتقال الرقمي وإصلاح الإدارة – آخر أجل 15 يونيو 2026</li>
+          </ul>
+        </section>
+      </div>
     </div>
-  </div>
 
-  <h1 class="page-title">المناصب العليا</h1>
-  <p class="page-intro">مناصب عليا في الوظيفة العمومية: كتاب عامون، مدراء مركزيون، رؤساء أقسام.</p>
+    <h1 class="page-title">المناصب العليا</h1>
+    <p class="page-intro">مناصب عليا في الوظيفة العمومية: كتاب عامون، مدراء مركزيون، رؤساء أقسام.</p>
 
-  <div class="cards-grid" id="emplois-superieurs-container"></div>
+    <div class="cards-grid" id="emplois-superieurs-container"></div>
 
-  <section id="article-detail-section" class="article-detail-container" style="display: none;">
-    <button class="back-to-list" id="back-to-list-sup"><i class="fas fa-arrow-right"></i> العودة إلى العروض</button>
-    <div id="article-detail-content-sup"></div>
-  </section>
-</main>
+    <section id="article-detail-section" class="article-detail-container" style="display: none;">
+      <button class="back-to-list" id="back-to-list-sup"><i class="fas fa-arrow-right"></i> العودة إلى العروض</button>
+      <div id="article-detail-content-sup"></div>
+    </section>
+  </main>
+
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-logo">
@@ -209,7 +189,7 @@
       const btn = document.getElementById('toggle-static-intro');
       const content = document.getElementById('static-intro-content');
       if (btn && content) {
-        content.style.display = 'none'; // مطوي افتراضيًا
+        content.style.display = 'none';
         btn.classList.remove('active');
         btn.addEventListener('click', function() {
           if (content.style.display === 'none') {
