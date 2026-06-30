@@ -1,5 +1,5 @@
 ---
-// مناصب المسؤولية – صفحة ثابتة مع محتوى ديناميكي
+// مناصب المسؤولية – صفحة ثابتة مع محتوى موسع
 ---
 
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="تصفح إعلانات مناصب المسؤولية في القطاع العام المغربي: رؤساء مصالح، رؤساء أقسام، وأطر التدبير. فرص للتطور الوظيفي." />
+  <meta name="description" content="دليل شامل لمناصب المسؤولية في القطاع العام المغربي: رؤساء مصالح، رؤساء أقسام، شروط الترشح، ونظام التعيين." />
   <title>مناصب المسؤولية | بوابتي 360</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -104,83 +104,62 @@
         <h3>معلومات</h3>
         <ul>
           <li><a href="/qui-sommes-nous"><i class="fas fa-users"></i> من نحن</a></li>
+          <li><a href="/equipe"><i class="fas fa-user-circle"></i> فريق العمل</a></li>
           <li><a href="/contact"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
           <li><a href="/faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
           <li><a href="/politique-confidentialite"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
         </ul>
-      </div>
-      <div class="nav-section">
-        <h3>الإعدادات</h3>
-        <div class="settings-group">
-          <label>حجم الخط</label>
-          <div class="font-size-controls">
-            <button class="font-size-btn" data-size="small">أ-</button>
-            <button class="font-size-btn active" data-size="normal">أ</button>
-            <button class="font-size-btn" data-size="large">أ+</button>
-          </div>
-        </div>
-        <div class="settings-group">
-          <label>جهة المغرب</label>
-          <select id="region-filter" class="region-select">
-            <option value="all">جميع الجهات</option>
-            <option value="طنجة-تطوان-الحسيمة">طنجة-تطوان-الحسيمة</option>
-            <option value="الشرق">الشرق</option>
-            <option value="فاس-مكناس">فاس-مكناس</option>
-            <option value="الرباط-سلا-القنيطرة">الرباط-سلا-القنيطرة</option>
-            <option value="بني ملال-خنيفرة">بني ملال-خنيفرة</option>
-            <option value="الدار البيضاء-سطات">الدار البيضاء-سطات</option>
-            <option value="مراكش-آسفي">مراكش-آسفي</option>
-            <option value="درعة-تافيلالت">درعة-تافيلالت</option>
-            <option value="سوس-ماسة">سوس-ماسة</option>
-            <option value="كلميم-واد نون">كلميم-واد نون</option>
-            <option value="العيون-الساقية الحمراء">العيون-الساقية الحمراء</option>
-            <option value="الداخلة-وادي الذهب">الداخلة-وادي الذهب</option>
-          </select>
-        </div>
-        <div class="settings-group toggle-setting">
-          <label>عرض الأجور</label>
-          <label class="switch">
-            <input type="checkbox" id="show-salaries-toggle" checked />
-            <span class="slider"></span>
-          </label>
-        </div>
       </div>
     </nav>
   </div>
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
   <main>
-  <!-- المحتوى الثابت مطوي خلف زر -->
-  <div class="collapsible-wrapper">
-    <button class="collapsible-btn" id="toggle-static-intro">
-      <span>📋 معلومات عن مناصب المسؤولية</span>
-      <i class="fas fa-chevron-down" id="toggle-icon"></i>
-    </button>
-    <div class="collapsible-content" id="static-intro-content">
-      <section class="static-intro">
-        <h1>مناصب المسؤولية في الوظيفة العمومية المغربية</h1>
-        <p>مرحبًا بكم في صفحة مناصب المسؤولية الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات مناصب المسؤولية في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. مناصب المسؤولية هي مناصب إدارية وتقنية حيوية تشمل رؤساء مصالح، رؤساء أقسام، وأطر التدبير والتسيير في مختلف الوزارات والمؤسسات العمومية.</p>
-        
-        <h2>أحدث مناصب المسؤولية المعلنة</h2>
-        <ul>
-          <li>منصب رئيس قسم الحياة الحضرية – مجلس جماعة الدار البيضاء – عمالة الدار البيضاء – آخر أجل 23 يونيو 2026</li>
-          <li>منصب رئيس مصلحة الإحصاءات والحسابات الجهوية – المندوبية السامية للتخطيط (HCP) – آخر أجل 25 ماي 2026</li>
-          <li>منصب رئيس مصلحة التدقيق – الوكالة المغربية للأدوية والمنتجات الصحية (AMMPS) – آخر أجل 24 ماي 2026</li>
-        </ul>
-      </section>
+    <!-- محتوى ثابت موسع -->
+    <div class="collapsible-wrapper">
+      <button class="collapsible-btn" id="toggle-static-intro">
+        <span>📋 دليل مناصب المسؤولية</span>
+        <i class="fas fa-chevron-down" id="toggle-icon"></i>
+      </button>
+      <div class="collapsible-content" id="static-intro-content">
+        <section class="static-intro">
+          <h1>مناصب المسؤولية في الوظيفة العمومية المغربية</h1>
+          <p>مرحبًا بكم في صفحة مناصب المسؤولية الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات مناصب المسؤولية في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. مناصب المسؤولية هي مناصب إدارية وتقنية حيوية تشمل رؤساء مصالح، رؤساء أقسام، وأطر التدبير والتسيير في مختلف الوزارات والمؤسسات العمومية.</p>
+          
+          <h2>ما هي مناصب المسؤولية؟</h2>
+          <p>مناصب المسؤولية هي مناصب إدارية وسطى تُسند إلى موظفين ذوي أقدمية وكفاءة داخل إداراتهم. على عكس المناصب العليا التي تُعيّن بقرارات سياسية، فإن مناصب المسؤولية تُشغل غالباً عن طريق الترقية الداخلية أو المباريات المهنية.</p>
+          
+          <h2>كيف يتم الترشح لمنصب المسؤولية؟</h2>
+          <ul>
+            <li>يُعلن عن شغور المنصب داخل الإدارة المعنية.</li>
+            <li>يُشترط في المترشح أن يكون موظفاً رسمياً بنفس القطاع.</li>
+            <li>تُدرس الملفات من طرف لجنة مختصة.</li>
+            <li>يتم التعيين بقرار من الوزير أو المسؤول المختص.</li>
+          </ul>
+          
+          <h2>الراتب والمزايا</h2>
+          <p>تتراوح رواتب شاغلي مناصب المسؤولية بين 10,000 و20,000 درهم شهرياً حسب السلم والقطاع، مع تعويضات إضافية عن المسؤولية والتمثيل.</p>
+          
+          <h2>أحدث مناصب المسؤولية المعلنة</h2>
+          <ul>
+            <li>منصب رئيس قسم الحياة الحضرية – مجلس جماعة الدار البيضاء – عمالة الدار البيضاء – آخر أجل 23 يونيو 2026</li>
+            <li>منصب رئيس مصلحة الإحصاءات والحسابات الجهوية – المندوبية السامية للتخطيط (HCP) – آخر أجل 25 ماي 2026</li>
+            <li>منصب رئيس مصلحة التدقيق – الوكالة المغربية للأدوية والمنتجات الصحية (AMMPS) – آخر أجل 24 ماي 2026</li>
+          </ul>
+        </section>
+      </div>
     </div>
-  </div>
 
-  <h1 class="page-title">مناصب المسؤولية</h1>
-  <p class="page-intro">رؤساء مصالح، رؤساء أقسام: مناصب المسؤولية في الإدارة العمومية.</p>
+    <h1 class="page-title">مناصب المسؤولية</h1>
+    <p class="page-intro">رؤساء مصالح، رؤساء أقسام: مناصب المسؤولية في الإدارة العمومية.</p>
 
-  <div class="cards-grid" id="postes-responsabilite-container"></div>
+    <div class="cards-grid" id="postes-responsabilite-container"></div>
 
-  <section id="article-detail-section" class="article-detail-container" style="display: none;">
-    <button class="back-to-list" id="back-to-list-resp"><i class="fas fa-arrow-right"></i> العودة إلى العروض</button>
-    <div id="article-detail-content-resp"></div>
-  </section>
-</main>
+    <section id="article-detail-section" class="article-detail-container" style="display: none;">
+      <button class="back-to-list" id="back-to-list-resp"><i class="fas fa-arrow-right"></i> العودة إلى العروض</button>
+      <div id="article-detail-content-resp"></div>
+    </section>
+  </main>
 
   <footer class="site-footer">
     <div class="footer-content">
@@ -210,7 +189,7 @@
       const btn = document.getElementById('toggle-static-intro');
       const content = document.getElementById('static-intro-content');
       if (btn && content) {
-        content.style.display = 'none'; // مطوي افتراضيًا
+        content.style.display = 'none';
         btn.classList.remove('active');
         btn.addEventListener('click', function() {
           if (content.style.display === 'none') {
