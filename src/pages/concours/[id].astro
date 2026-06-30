@@ -56,7 +56,7 @@ const jsonLd = {
   },
   hiringOrganization: {
     "@type": "Organization",
-    name: job.organisation || 'جهة حكومية'
+    name: job.organisation || job.ministry || 'جهة حكومية'
   }
 };
 ---
@@ -147,53 +147,124 @@ const jsonLd = {
     </a>
     
     <article>
-      <h1 class="page-title" style="font-size: 1.8rem; margin-bottom: 1rem;">{job.title || 'مباراة توظيف'}</h1>
+      <h1 class="page-title" style="font-size: 1.8rem; margin-bottom: 1rem;">{job.title || job.fullTitle || 'مباراة توظيف'}</h1>
       
       <div class="job-meta" style="margin-bottom: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 1rem;">
-        {job.organisation && (
-          <span><i class="fas fa-building"></i> <strong>الجهة المنظمة:</strong> {job.organisation}</span>
-        )}
-        {job.region && (
+        {job.organisation || job.ministry ? (
+          <span><i class="fas fa-building"></i> <strong>الجهة المنظمة:</strong> {job.organisation || job.ministry}</span>
+        ) : ''}
+        {job.region ? (
           <span><i class="fas fa-map-marker-alt"></i> <strong>الجهة:</strong> {job.region}</span>
-        )}
-        {job.dateLimite && (
-          <span><i class="fas fa-calendar-alt"></i> <strong>آخر أجل:</strong> {job.dateLimite}</span>
-        )}
-        {job.secteur && (
+        ) : ''}
+        {job.dateLimite || job.inscriptionFin ? (
+          <span><i class="fas fa-calendar-alt"></i> <strong>آخر أجل:</strong> {job.dateLimite || job.inscriptionFin}</span>
+        ) : ''}
+        {job.secteur ? (
           <span><i class="fas fa-tag"></i> <strong>القطاع:</strong> {job.secteur}</span>
-        )}
+        ) : ''}
+        {job.postes ? (
+          <span><i class="fas fa-users"></i> <strong>عدد المناصب:</strong> {job.postes}</span>
+        ) : ''}
+        {job.ageLimit ? (
+          <span><i class="fas fa-user-clock"></i> <strong>السن:</strong> {job.ageLimit}</span>
+        ) : ''}
+        {job.diplome ? (
+          <span><i class="fas fa-graduation-cap"></i> <strong>الشهادة:</strong> {job.diplome}</span>
+        ) : ''}
       </div>
 
-      {job.deadline && (
+      {job.deadline ? (
         <div class="deadline-countdown" style="margin-bottom: 1.5rem;">
           <i class="fas fa-hourglass-half"></i>
           <span data-deadline={job.deadline}>--</span>
         </div>
-      )}
+      ) : ''}
 
-      <section class="analyse-bawabaty" style="margin-bottom: 2rem; padding: 1.5rem; background: #f0f7ff; border-right: 4px solid var(--primary); border-radius: 8px;">
-        <h2 style="margin-top: 0; color: var(--primary);">📊 تحليل بوابتي 360</h2>
-        <p style="font-size: 1.05rem; line-height: 1.8;">
-          {job.analyse || 'فرصة ممتازة لحاملي الشهادات المطلوبة. ننصح بالاطلاع على الشروط بدقة والتسجيل المبكر. هذه المباراة تمثل مدخلاً مهماً للوظيفة العمومية في هذا التخصص.'}
-        </p>
-      </section>
+      {job.analyse || job.description ? (
+        <section class="analyse-bawabaty" style="margin-bottom: 2rem; padding: 1.5rem; background: #f0f7ff; border-right: 4px solid var(--primary); border-radius: 8px;">
+          <h2 style="margin-top: 0; color: var(--primary);">📊 تحليل بوابتي 360</h2>
+          <p style="font-size: 1.05rem; line-height: 1.8;">
+            {job.analyse || job.description}
+          </p>
+        </section>
+      ) : ''}
 
-      <section class="job-content" style="margin-bottom: 2rem;">
-        <h2>📋 تفاصيل الإعلان</h2>
-        <div style="font-size: 1.05rem; line-height: 1.9;">
-          {job.content || job.description || 'تفاصيل المباراة قيد التحديث.'}
+      {job.mission ? (
+        <section class="job-mission" style="margin-bottom: 2rem;">
+          <h2>🎯 المهام والمسؤوليات</h2>
+          <p style="font-size: 1.05rem; line-height: 1.9;">{job.mission}</p>
+        </section>
+      ) : ''}
+
+      {job.conditions && job.conditions.length > 0 ? (
+        <section class="job-conditions" style="margin-bottom: 2rem;">
+          <h2>📜 شروط المشاركة</h2>
+          <p>{job.conditionsIntro || 'يشترط في المترشحين توفر الشروط التالية:'}</p>
+          <ul style="line-height: 1.9;">
+            {job.conditions.map(c => `<li>${c}</li>`).join('')}
+          </ul>
+        </section>
+      ) : ''}
+
+      {job.pieces && job.pieces.length > 0 ? (
+        <section class="job-pieces" style="margin-bottom: 2rem;">
+          <h2>📁 ملف الترشيح</h2>
+          <p>{job.piecesIntro || 'يتكون ملف الترشيح من الوثائق التالية:'}</p>
+          <ol style="line-height: 1.9;">
+            {job.pieces.map(p => `<li>${p}</li>`).join('')}
+          </ol>
+        </section>
+      ) : ''}
+
+      {job.notesImportantes && job.notesImportantes.length > 0 ? (
+        <section class="job-notes" style="margin-bottom: 2rem;">
+          <h2>⚠️ ملاحظات هامة</h2>
+          <ul style="line-height: 1.9;">
+            {job.notesImportantes.map(n => `<li>${n}</li>`).join('')}
+          </ul>
+        </section>
+      ) : ''}
+
+      {job.centreMabara || job.lieu ? (
+        <section class="job-lieu" style="margin-bottom: 2rem;">
+          <h2>📍 مركز المباراة</h2>
+          <p>{job.centreMabara || job.lieu}</p>
+        </section>
+      ) : ''}
+
+      {job.epreuves ? (
+        <section class="job-epreuves" style="margin-bottom: 2rem;">
+          <h2>✍️ طبيعة الاختبارات</h2>
+          <p>{job.epreuves}</p>
+        </section>
+      ) : ''}
+
+      {job.apresTest ? (
+        <section class="job-apres" style="margin-bottom: 2rem;">
+          <h2>📣 بعد الاختبار</h2>
+          <p>{job.apresTest}</p>
+        </section>
+      ) : ''}
+
+      {job.regions ? (
+        <section class="job-regions" style="margin-bottom: 2rem;">
+          <h2>🗺️ التوزيع الجهوي للمناصب</h2>
+          <table class="salary-table">
+            <thead><tr><th>الجهة</th><th>عدد المناصب</th></tr></thead>
+            <tbody>
+              {Object.entries(job.regions).map(([r, nb]) => `<tr><td>${r}</td><td>${nb}</td></tr>`).join('')}
+            </tbody>
+          </table>
+        </section>
+      ) : ''}
+
+      {job.lienInscription ? (
+        <div style="margin: 2rem 0; text-align: center;">
+          <a href={job.lienInscription} target="_blank" class="btn btn-primary btn-large" style="display: inline-block; padding: 0.8rem 2rem; font-size: 1.1rem;">
+            <i class="fas fa-pen"></i> رابط التسجيل لاجتياز المباراة
+          </a>
         </div>
-      </section>
-
-      <section class="job-tips" style="margin-bottom: 2rem; padding: 1.5rem; background: #fef9e7; border-radius: 8px;">
-        <h2>💡 نصائح للمترشحين</h2>
-        <ul style="line-height: 1.9;">
-          <li>تأكد من استيفاء جميع الشروط قبل الترشح.</li>
-          <li>جهّز ملف الترشيح مبكراً (الشهادات، السوابق العدلية، الصور).</li>
-          <li>اطلع على مواضيع المباريات السابقة لنفس المؤسسة.</li>
-          <li>تابع صفحتنا لمستجدات هذه المباراة.</li>
-        </ul>
-      </section>
+      ) : ''}
 
       <!-- أزرار المشاركة -->
       <div class="share-actions">
@@ -260,17 +331,13 @@ const jsonLd = {
 
       // أزرار المشاركة
       const currentUrl = window.location.href;
-      const fbBtn = document.getElementById('share-facebook');
-      const waBtn = document.getElementById('share-whatsapp');
-      const copyBtn = document.getElementById('copy-link');
-
-      if (fbBtn) fbBtn.addEventListener('click', () => {
+      document.getElementById('share-facebook')?.addEventListener('click', () => {
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank');
       });
-      if (waBtn) waBtn.addEventListener('click', () => {
+      document.getElementById('share-whatsapp')?.addEventListener('click', () => {
         window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(currentJob.title + ' ' + currentUrl)}`, '_blank');
       });
-      if (copyBtn) copyBtn.addEventListener('click', () => {
+      document.getElementById('copy-link')?.addEventListener('click', () => {
         navigator.clipboard.writeText(currentUrl).then(() => {
           alert('تم نسخ الرابط إلى الحافظة');
         });
