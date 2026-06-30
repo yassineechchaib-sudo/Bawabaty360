@@ -98,7 +98,7 @@ function renderConcoursCard(article) {
       <div class="card-meta"><i class="fas fa-building"></i> ${article.ministry}</div>
       <div class="card-meta"><i class="fas fa-users"></i> ${article.postes} منصب</div>
       <div class="deadline-countdown"><i class="fas fa-hourglass-half"></i> <span data-deadline="${article.deadline}">--</span></div>
-      <a href="concours.html?id=${article.id}" class="detail-link">تفاصيل <i class="fas fa-arrow-left"></i></a>
+      <a href="/concours/${article.id}" class="detail-link">تفاصيل <i class="fas fa-arrow-left"></i></a>
     </div>
   `;
 }
@@ -123,7 +123,7 @@ function renderSuggestionCard(article) {
       <span class="card-badge">سلم ${article.echelle}</span>
       <h4 class="suggestion-title">${article.title}</h4>
       <div class="suggestion-meta">${article.ministry}</div>
-      <a href="concours.html?id=${article.id}" class="detail-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+      <a href="/concours/${article.id}" class="detail-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
     </div>
   `;
 }
@@ -225,33 +225,9 @@ function initConcours() {
     renderPaginated(document.getElementById(`echelle${echelle}-container`), filtered);
   });
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const articleId = urlParams.get('id');
-  if (articleId) {
-    const article = data.find(a => a.id == articleId);
-    if (article) {
-      document.querySelectorAll('.concours-section').forEach(s => s.style.display = 'none');
-      showArticleDetail(article);
-      const backBtn = document.getElementById('back-to-list');
-      if (backBtn) {
-        backBtn.addEventListener('click', function () {
-          window.location.href = 'concours.html';
-        });
-      }
-    }
-  }
-
-  document.querySelectorAll('[data-action="view-detail"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const id = link.dataset.id;
-      const article = data.find(a => a.id == id);
-      if (article) showArticleDetail(article);
-    });
-  });
-
-  const backBtn = document.getElementById('back-to-list');
-  if (backBtn) backBtn.addEventListener('click', hideArticleDetail);
+  // إزالة الكود القديم الذي يتعامل مع ?id= في الرابط
+  // الروابط الآن مباشرة: /concours/{id}
+  // لذلك لا نحتاج للاستماع إلى أحداث النقر على البطاقات
 
   window.updateCountdowns();
 }
