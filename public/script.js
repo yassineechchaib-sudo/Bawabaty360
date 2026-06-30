@@ -1,5 +1,5 @@
 // script.js - Logic UI (Arabic only)
-
+(function(){var s=document.createElement('script');s.defer=true;s.src='/_vercel/insights/script.js';document.head.appendChild(s);})();
 (function() {
   // Dark mode
   const darkToggle = document.getElementById('dark-toggle');
