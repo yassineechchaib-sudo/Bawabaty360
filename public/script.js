@@ -13,7 +13,7 @@
     }
   }
   initDarkMode();
-  
+   
   if (darkToggle) {
     darkToggle.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
