@@ -1,14 +1,37 @@
 ---
 // صفحة تفاصيل المباراة – HTML ثابت كامل
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+
 export async function getStaticPaths() {
-  // استيراد البيانات من الملف العام
-  const data = await fetch('https://bawabaty360.com/data.js');
-  const text = await data.text();
-  // استخراج المصفوفة من الملف (يفترض أن الملف يحتوي على const allJobs = [...])
-  const match = text.match(/const\s+allJobs\s*=\s*(\[[\s\S]*?\]);/);
-  if (!match) return { paths: [], fallback: false };
-  const allJobs = JSON.parse(match[1]);
-  
+  // قراءة data.js محلياً من القرص (بدون أي طلب شبكة)
+  const filePath = path.join(process.cwd(), 'public', 'data.js');
+  const code = fs.readFileSync(filePath, 'utf-8');
+
+  // تنفيذ الملف داخل sandbox آمن لالتقاط القيم المسندة إلى window
+  const sandbox = { window: {} };
+  vm.createContext(sandbox);
+  try {
+    vm.runInContext(code, sandbox);
+  } catch (e) {
+    console.error('فشل تنفيذ data.js داخل getStaticPaths:', e);
+    return [];
+  }
+
+  // محاولة التقاط البيانات تحت أكثر من اسم محتمل تحسباً
+  const allJobs =
+    sandbox.window.concoursData ||
+    sandbox.concoursData ||
+    sandbox.window.allJobs ||
+    sandbox.allJobs ||
+    [];
+
+  if (!Array.isArray(allJobs) || allJobs.length === 0) {
+    console.warn('لم يتم العثور على مصفوفة concoursData في data.js');
+    return [];
+  }
+
   return allJobs.map(job => ({
     params: { id: job.id.toString() },
     props: { job }
@@ -18,6 +41,28 @@ export async function getStaticPaths() {
 const { job } = Astro.props;
 const pageTitle = `${job.title || 'تفاصيل المباراة'} | بوابتي 360`;
 const pageDescription = (job.content || job.description || 'تفاصيل مباراة التوظيف').substring(0, 160);
+
+// بناء JSON-LD بشكل صحيح كـ object حقيقي ثم تحويله إلى JSON صالح
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  title: job.title || 'مباراة توظيف',
+  description: job.content || job.description || 'تفاصيل المباراة',
+  datePosted: job.datePub || '2026-06-01',
+  validThrough: job.dateLimite || '2026-12-31',
+  jobLocation: {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "MA",
+      addressLocality: job.region || 'المغرب'
+    }
+  },
+  hiringOrganization: {
+    "@type": "Organization",
+    name: job.organisation || 'جهة حكومية'
+  }
+};
 ---
 
 <!DOCTYPE html>
@@ -35,28 +80,7 @@ const pageDescription = (job.content || job.description || 'تفاصيل مبا�
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="/style.css" />
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "JobPosting",
-      "title": {job.title || 'مباراة توظيف'},
-      "description": {job.content || job.description || 'تفاصيل المباراة'},
-      "datePosted": {job.datePub || '2026-06-01'},
-      "validThrough": {job.dateLimite || '2026-12-31'},
-      "jobLocation": {
-        "@type": "Place",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "MA",
-          "addressLocality": {job.region || 'المغرب'}
-        }
-      },
-      "hiringOrganization": {
-        "@type": "Organization",
-        "name": {job.organisation || 'جهة حكومية'}
-      }
-    }
-  </script>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
 </head>
 <body>
   <header id="main-header">
