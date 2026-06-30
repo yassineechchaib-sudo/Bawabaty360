@@ -1,5 +1,5 @@
 ---
-// صفحة تفاصيل المباراة – HTML ثابت كامل
+// صفحة تفاصيل المباراة – HTML ثابت كامل (مطابق للنسخة القديمة)
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -7,6 +7,7 @@ import vm from 'node:vm';
 export async function getStaticPaths() {
   const filePath = path.join(process.cwd(), 'public', 'data.js');
   const code = fs.readFileSync(filePath, 'utf-8');
+
   const sandbox = { window: {} };
   vm.createContext(sandbox);
   try {
@@ -15,8 +16,19 @@ export async function getStaticPaths() {
     console.error('فشل تنفيذ data.js:', e);
     return [];
   }
-  const allJobs = sandbox.window.concoursData || sandbox.concoursData || [];
-  if (!Array.isArray(allJobs) || allJobs.length === 0) return [];
+
+  const allJobs =
+    sandbox.window.concoursData ||
+    sandbox.concoursData ||
+    sandbox.window.allJobs ||
+    sandbox.allJobs ||
+    [];
+
+  if (!Array.isArray(allJobs) || allJobs.length === 0) {
+    console.warn('لم يتم العثور على المصفوفة');
+    return [];
+  }
+
   return allJobs.map(job => ({
     params: { id: job.id.toString() },
     props: { job }
@@ -26,17 +38,29 @@ export async function getStaticPaths() {
 const { job } = Astro.props;
 const pageTitle = `${job.fullTitle || job.title} | بوابتي 360`;
 const pageDescription = (job.introText || job.description || 'تفاصيل المباراة').substring(0, 160);
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "JobPosting",
   title: job.fullTitle || job.title,
-  description: job.introText || job.description || '',
+  description: pageDescription,
   datePosted: job.datePub || '',
   validThrough: job.inscriptionFin || '',
-  jobLocation: { "@type": "Place", address: { "@type": "PostalAddress", addressCountry: "MA", addressLocality: job.region || 'المغرب' } },
-  hiringOrganization: { "@type": "Organization", name: job.ministry || 'جهة حكومية' }
+  jobLocation: {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "MA",
+      addressLocality: job.region || 'المغرب'
+    }
+  },
+  hiringOrganization: {
+    "@type": "Organization",
+    name: job.ministry || 'جهة حكومية'
+  }
 };
 ---
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -55,41 +79,97 @@ const jsonLd = {
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
 </head>
 <body>
+  <!-- ========== HEADER ========== -->
   <header id="main-header">
     <div class="header-container">
-      <button class="hamburger" id="hamburger-btn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
-      <a href="/" class="logo"><span class="logo-main">بوابتي</span><span class="logo-360">360</span></a>
-      <button class="dark-toggle" id="dark-toggle" aria-label="الوضع الليلي/النهاري"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" id="hamburger-btn" aria-label="القائمة">
+        <i class="fas fa-bars"></i>
+      </button>
+      <a href="/" class="logo">
+        <span class="logo-main">بوابتي</span><span class="logo-360">360</span>
+      </a>
+      <button class="dark-toggle" id="dark-toggle" aria-label="الوضع الليلي/النهاري">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
   </header>
-  <!-- الشريط الجانبي كما هو بدون تغيير -->
-  <div class="sidebar" id="sidebar">...</div>
+
+  <!-- ========== SIDEBAR (كامل) ========== -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">القائمة</span>
+      <button class="sidebar-close" id="sidebar-close"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <h3>الأقسام</h3>
+        <ul>
+          <li class="nav-group">
+            <span class="nav-group-title"><i class="fas fa-landmark"></i> القطاع العام</span>
+            <ul class="sub-nav">
+              <li><a href="/concours"><i class="fas fa-file-alt"></i> مباريات</a></li>
+              <li><a href="/emplois-superieurs"><i class="fas fa-user-tie"></i> مناصب عليا</a></li>
+              <li><a href="/postes-responsabilite"><i class="fas fa-briefcase"></i> مناصب المسؤولية</a></li>
+              <li><a href="/salaires-2026"><i class="fas fa-money-bill-wave"></i> الأجور 2026</a></li>
+              <li><a href="/calendrier"><i class="fas fa-calendar-alt"></i> الرزنامة 2026</a></li>
+            </ul>
+          </li>
+          <li><a href="/secteur-prive"><i class="fas fa-building"></i> القطاع الخاص</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h3>أدلة تعليمية</h3>
+        <ul>
+          <li><a href="/guide-concours"><i class="fas fa-book"></i> الدليل الشامل للمباريات</a></li>
+          <li><a href="/guide-cv"><i class="fas fa-file-alt"></i> كتابة السيرة الذاتية</a></li>
+          <li><a href="/guide-oral"><i class="fas fa-microphone-alt"></i> اجتياز الاختبارات الشفوية</a></li>
+          <li><a href="/echelles-guide"><i class="fas fa-layer-group"></i> نظام السلاليم والترقيات</a></li>
+          <li><a href="/public-vs-prive"><i class="fas fa-balance-scale"></i> القطاع العام مقابل الخاص</a></li>
+          <li><a href="/specialites-2026"><i class="fas fa-chart-line"></i> أفضل التخصصات المطلوبة</a></li>
+          <li><a href="/sans-bac"><i class="fas fa-tools"></i> وظائف بدون بكالوريا</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h3>معلومات</h3>
+        <ul>
+          <li><a href="/qui-sommes-nous"><i class="fas fa-users"></i> من نحن</a></li>
+          <li><a href="/equipe"><i class="fas fa-user-circle"></i> فريق العمل</a></li>
+          <li><a href="/contact"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+          <li><a href="/faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+          <li><a href="/politique-confidentialite"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-  <main style="max-width: 800px; margin: 2rem auto; padding: 1rem;">
-    <a href="/concours" class="back-to-list"><i class="fas fa-arrow-right"></i> العودة إلى المباريات</a>
+  <!-- ========== المحتوى الرئيسي ========== -->
+  <main class="article-detail-container" style="display: block; max-width: 800px; margin: 2rem auto; padding: 1rem;">
+    <a href="/concours" class="back-to-list" style="display: inline-block; margin-bottom: 1.5rem; color: var(--primary);">
+      <i class="fas fa-arrow-right"></i> العودة إلى المباريات
+    </a>
 
     <article class="article-detail">
       <div class="article-header">
         <h2>{job.fullTitle || job.title}</h2>
       </div>
 
-      <!-- الصورة (موجودة في القديم) -->
+      <!-- الصورة (إصلاح المسار بجعله مطلقًا) -->
       {job.images && job.images.length > 0 ? (
         <div class="article-gallery">
           {job.images.map(img => (
             <div class="gallery-item">
-              <img src={img} alt={job.title} onerror="this.src='data:image/svg+xml,...'" />
+              <img src={"/" + img} alt={job.title} onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect width=%22800%22 height=%22500%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2240%22 y=%2240%22 font-size=%2220%22 fill=%22%23475569%22%3Eالصورة غير متوفرة%3C/text%3E%3C/svg%3E';" />
             </div>
           ))}
         </div>
       ) : job.image ? (
         <div class="image-placeholder">
-          <img src={job.image} alt="إعلان رسمي" />
+          <img src={"/" + job.image} alt="إعلان رسمي" />
         </div>
       ) : (
         <div class="image-placeholder">
-          <img src="data:image/svg+xml,..." alt="إعلان رسمي" />
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%23e2e8f0'/%3E%3Ctext x='40' y='40' font-size='20' fill='%23475569'%3Eإعلان مباراة رسمي%3C/text%3E%3C/svg%3E" alt="إعلان رسمي" />
         </div>
       )}
 
@@ -109,12 +189,14 @@ const jsonLd = {
 
       <h3>آخر أجل للتقديم</h3>
       <p>{job.deadlineIntro || 'يجب إيداع الترشيحات إلكترونياً قبل:'} <strong>{job.inscriptionFin}</strong>.</p>
-      {job.deadline ? <div class="deadline-countdown"><i class="fas fa-hourglass-half"></i> <span data-deadline={job.deadline}></span></div> : ''}
+      {job.deadline ? (
+        <div class="deadline-countdown"><i class="fas fa-hourglass-half"></i> <span data-deadline={job.deadline}></span></div>
+      ) : ''}
 
-      <p style="margin-top:1.5rem">
-        📝 للتسجيل المباشر في المباراة:
+      <p style="margin-top: 1.5rem;">
+        📝 للتسجيل المباشر في المباراة: 
         <a href={job.lienInscriptionDirecte || '#'} target="_blank" rel="noopener noreferrer" class="text-link">رابط التسجيل المباشر</a>
-        {job.lienInscriptionDirecte ? <br/><small style="color:#64748b">⚡ في حال تعطل الرابط المباشر، استعمل زر "رابط التسجيل لاجتياز المباراة" في الأسفل.</small> : ''}
+        {job.lienInscriptionDirecte ? <br /><small style="color: #64748b;">⚡ في حال تعطل الرابط المباشر، استعمل زر "رابط التسجيل لاجتياز المباراة" في الأسفل.</small> : ''}
       </p>
 
       <h3>ملاحظات هامة</h3>
@@ -149,6 +231,7 @@ const jsonLd = {
         </a>
       ) : ''}
 
+      <!-- أزرار المشاركة -->
       <div class="share-actions">
         <span>شارك هذه المباراة:</span>
         <div class="share-buttons-bottom">
@@ -158,25 +241,68 @@ const jsonLd = {
         </div>
       </div>
 
+      <!-- اقتراحات -->
       <section class="suggestions-section">
         <h3><i class="fas fa-lightbulb"></i> قد يهمك أيضاً</h3>
         <div class="suggestions-grid" id="suggestions-container"></div>
       </section>
     </article>
 
-    <div class="author-signature" style="margin-top:2rem; padding:1rem; border-top:1px solid #eee; font-size:0.9rem; color:#555;">
+    <div class="author-signature" style="margin-top: 2rem; padding: 1rem; border-top: 1px solid #eee; font-size: 0.9rem; color: #555;">
       <p>✍️ <strong>بقلم: فريق بوابتي 360</strong> — <a href="/equipe">ياسين الإدريسي</a> | نُشرت في {job.datePub || '2026'}</p>
     </div>
   </main>
 
-  <footer class="site-footer">...</footer>
-  <button class="scroll-top" id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="logo-main">بوابتي</span><span class="logo-360">360</span>
+      </div>
+      <div class="footer-links">
+        <a href="/contact">اتصل بنا</a>
+        <a href="/faq">الأسئلة الشائعة</a>
+        <a href="/politique-confidentialite">الخصوصية</a>
+        <a href="/terms">شروط الاستخدام</a>
+        <a href="/sitemap.xml">خريطة الموقع</a>
+      </div>
+      <p class="copyright">© 2026 بوابتي 360 - جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
 
+  <button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- السكربتات -->
   <script is:inline src="/data.js"></script>
   <script is:inline src="/script.js"></script>
   <script type="application/json" id="job-data" set:html={JSON.stringify(job)}></script>
   <script is:inline>
-    // نفس كود الاقتراحات والمشاركة السابق
+    (function() {
+      const currentJobEl = document.getElementById('job-data');
+      if (!currentJobEl) return;
+      const currentJob = JSON.parse(currentJobEl.textContent);
+
+      if (window.updateCountdowns) window.updateCountdowns();
+
+      const suggestionsContainer = document.getElementById('suggestions-container');
+      if (suggestionsContainer && window.getSuggestedArticles && window.renderSuggestionCard) {
+        const suggestions = window.getSuggestedArticles(currentJob);
+        suggestionsContainer.innerHTML = suggestions.map(window.renderSuggestionCard).join('');
+      }
+
+      const currentUrl = window.location.href;
+      document.getElementById('share-facebook')?.addEventListener('click', () => {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank');
+      });
+      document.getElementById('share-whatsapp')?.addEventListener('click', () => {
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(currentJob.title + ' ' + currentUrl)}`, '_blank');
+      });
+      document.getElementById('copy-link')?.addEventListener('click', () => {
+        navigator.clipboard.writeText(currentUrl).then(() => {
+          alert('تم نسخ الرابط إلى الحافظة');
+        });
+      });
+    })();
   </script>
 </body>
 </html>
