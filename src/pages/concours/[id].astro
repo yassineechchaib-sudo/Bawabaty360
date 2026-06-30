@@ -5,11 +5,9 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 export async function getStaticPaths() {
-  // قراءة data.js محلياً من القرص (بدون أي طلب شبكة)
   const filePath = path.join(process.cwd(), 'public', 'data.js');
   const code = fs.readFileSync(filePath, 'utf-8');
 
-  // تنفيذ الملف داخل sandbox آمن لالتقاط القيم المسندة إلى window
   const sandbox = { window: {} };
   vm.createContext(sandbox);
   try {
@@ -19,7 +17,6 @@ export async function getStaticPaths() {
     return [];
   }
 
-  // محاولة التقاط البيانات تحت أكثر من اسم محتمل تحسباً
   const allJobs =
     sandbox.window.concoursData ||
     sandbox.concoursData ||
@@ -42,7 +39,6 @@ const { job } = Astro.props;
 const pageTitle = `${job.title || 'تفاصيل المباراة'} | بوابتي 360`;
 const pageDescription = (job.content || job.description || 'تفاصيل مباراة التوظيف').substring(0, 160);
 
-// بناء JSON-LD بشكل صحيح كـ object حقيقي ثم تحويله إلى JSON صالح
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "JobPosting",
@@ -168,6 +164,13 @@ const jsonLd = {
         )}
       </div>
 
+      {job.deadline && (
+        <div class="deadline-countdown" style="margin-bottom: 1.5rem;">
+          <i class="fas fa-hourglass-half"></i>
+          <span data-deadline={job.deadline}>--</span>
+        </div>
+      )}
+
       <section class="analyse-bawabaty" style="margin-bottom: 2rem; padding: 1.5rem; background: #f0f7ff; border-right: 4px solid var(--primary); border-radius: 8px;">
         <h2 style="margin-top: 0; color: var(--primary);">📊 تحليل بوابتي 360</h2>
         <p style="font-size: 1.05rem; line-height: 1.8;">
@@ -190,6 +193,22 @@ const jsonLd = {
           <li>اطلع على مواضيع المباريات السابقة لنفس المؤسسة.</li>
           <li>تابع صفحتنا لمستجدات هذه المباراة.</li>
         </ul>
+      </section>
+
+      <!-- أزرار المشاركة -->
+      <div class="share-actions">
+        <span>شارك هذه المباراة:</span>
+        <div class="share-buttons-bottom">
+          <button class="share-btn facebook" id="share-facebook"><i class="fab fa-facebook-f"></i> فيسبوك</button>
+          <button class="share-btn whatsapp" id="share-whatsapp"><i class="fab fa-whatsapp"></i> واتساب</button>
+          <button class="share-btn copy" id="copy-link"><i class="fas fa-link"></i> نسخ الرابط</button>
+        </div>
+      </div>
+
+      <!-- اقتراحات -->
+      <section class="suggestions-section">
+        <h3><i class="fas fa-lightbulb"></i> قد يهمك أيضاً</h3>
+        <div class="suggestions-grid" id="suggestions-container"></div>
       </section>
     </article>
 
@@ -215,18 +234,48 @@ const jsonLd = {
   </footer>
 
   <button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- تحميل البيانات أولاً، ثم السكريبت -->
   <script is:inline src="/data.js"></script>
-  <script is:inline>
-    // تعريض المتغيرات الضرورية على window للتوافق مع script.js
-    if (typeof concoursData !== 'undefined') window.concoursData = concoursData;
-    if (typeof emploisSuperieursData !== 'undefined') window.emploisSuperieursData = emploisSuperieursData;
-    if (typeof postesRespData !== 'undefined') window.postesRespData = postesRespData;
-    if (typeof privateOffers !== 'undefined') window.privateOffers = privateOffers;
-    if (typeof salaryData !== 'undefined') window.salaryData = salaryData;
-    if (typeof calendarData !== 'undefined') window.calendarData = calendarData;
-    if (typeof faqData !== 'undefined') window.faqData = faqData;
-    if (typeof allJobs !== 'undefined') window.allJobs = allJobs;
-  </script>
   <script is:inline src="/script.js"></script>
+
+  <!-- نقل بيانات المباراة الحالية من الخادم إلى المتصفح -->
+  <script type="application/json" id="job-data" set:html={JSON.stringify(job)}></script>
+
+  <script is:inline>
+    (function() {
+      const currentJobEl = document.getElementById('job-data');
+      if (!currentJobEl) return;
+      const currentJob = JSON.parse(currentJobEl.textContent);
+
+      // تفعيل العد التنازلي فوراً
+      if (window.updateCountdowns) window.updateCountdowns();
+
+      // ملء قسم الاقتراحات
+      const suggestionsContainer = document.getElementById('suggestions-container');
+      if (suggestionsContainer && window.getSuggestedArticles && window.renderSuggestionCard) {
+        const suggestions = window.getSuggestedArticles(currentJob);
+        suggestionsContainer.innerHTML = suggestions.map(window.renderSuggestionCard).join('');
+      }
+
+      // أزرار المشاركة
+      const currentUrl = window.location.href;
+      const fbBtn = document.getElementById('share-facebook');
+      const waBtn = document.getElementById('share-whatsapp');
+      const copyBtn = document.getElementById('copy-link');
+
+      if (fbBtn) fbBtn.addEventListener('click', () => {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank');
+      });
+      if (waBtn) waBtn.addEventListener('click', () => {
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(currentJob.title + ' ' + currentUrl)}`, '_blank');
+      });
+      if (copyBtn) copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(currentUrl).then(() => {
+          alert('تم نسخ الرابط إلى الحافظة');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
