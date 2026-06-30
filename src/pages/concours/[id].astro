@@ -1,0 +1,197 @@
+---
+// صفحة تفاصيل المباراة – HTML ثابت كامل
+export async function getStaticPaths() {
+  // استيراد البيانات من الملف العام
+  const data = await fetch('https://bawabaty360.com/data.js');
+  const text = await data.text();
+  // استخراج المصفوفة من الملف (يفترض أن الملف يحتوي على const allJobs = [...])
+  const match = text.match(/const\s+allJobs\s*=\s*(\[[\s\S]*?\]);/);
+  if (!match) return { paths: [], fallback: false };
+  const allJobs = JSON.parse(match[1]);
+  
+  return allJobs.map(job => ({
+    params: { id: job.id.toString() },
+    props: { job }
+  }));
+}
+
+const { job } = Astro.props;
+const pageTitle = `${job.title || 'تفاصيل المباراة'} | بوابتي 360`;
+const pageDescription = (job.content || job.description || 'تفاصيل مباراة التوظيف').substring(0, 160);
+---
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={pageDescription} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDescription} />
+  <meta property="og:image" content="https://bawabaty360.com/og-image.jpg" />
+  <title>{pageTitle}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "JobPosting",
+      "title": {job.title || 'مباراة توظيف'},
+      "description": {job.content || job.description || 'تفاصيل المباراة'},
+      "datePosted": {job.datePub || '2026-06-01'},
+      "validThrough": {job.dateLimite || '2026-12-31'},
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "MA",
+          "addressLocality": {job.region || 'المغرب'}
+        }
+      },
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": {job.organisation || 'جهة حكومية'}
+      }
+    }
+  </script>
+</head>
+<body>
+  <header id="main-header">
+    <div class="header-container">
+      <button class="hamburger" id="hamburger-btn" aria-label="القائمة">
+        <i class="fas fa-bars"></i>
+      </button>
+      <a href="/" class="logo">
+        <span class="logo-main">بوابتي</span><span class="logo-360">360</span>
+      </a>
+      <button class="dark-toggle" id="dark-toggle" aria-label="الوضع الليلي/النهاري">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">القائمة</span>
+      <button class="sidebar-close" id="sidebar-close"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <h3>الأقسام</h3>
+        <ul>
+          <li class="nav-group">
+            <span class="nav-group-title"><i class="fas fa-landmark"></i> القطاع العام</span>
+            <ul class="sub-nav">
+              <li><a href="/concours"><i class="fas fa-file-alt"></i> مباريات</a></li>
+              <li><a href="/emplois-superieurs"><i class="fas fa-user-tie"></i> مناصب عليا</a></li>
+              <li><a href="/postes-responsabilite"><i class="fas fa-briefcase"></i> مناصب المسؤولية</a></li>
+              <li><a href="/salaires-2026"><i class="fas fa-money-bill-wave"></i> الأجور 2026</a></li>
+              <li><a href="/calendrier"><i class="fas fa-calendar-alt"></i> الرزنامة 2026</a></li>
+            </ul>
+          </li>
+          <li><a href="/secteur-prive"><i class="fas fa-building"></i> القطاع الخاص</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h3>أدلة تعليمية</h3>
+        <ul>
+          <li><a href="/guide-concours"><i class="fas fa-book"></i> الدليل الشامل للمباريات</a></li>
+          <li><a href="/guide-cv"><i class="fas fa-file-alt"></i> كتابة السيرة الذاتية</a></li>
+          <li><a href="/guide-oral"><i class="fas fa-microphone-alt"></i> اجتياز الاختبارات الشفوية</a></li>
+          <li><a href="/echelles-guide"><i class="fas fa-layer-group"></i> نظام السلاليم والترقيات</a></li>
+          <li><a href="/public-vs-prive"><i class="fas fa-balance-scale"></i> القطاع العام مقابل الخاص</a></li>
+          <li><a href="/specialites-2026"><i class="fas fa-chart-line"></i> أفضل التخصصات المطلوبة</a></li>
+          <li><a href="/sans-bac"><i class="fas fa-tools"></i> وظائف بدون بكالوريا</a></li>
+        </ul>
+      </div>
+      <div class="nav-section">
+        <h3>معلومات</h3>
+        <ul>
+          <li><a href="/qui-sommes-nous"><i class="fas fa-users"></i> من نحن</a></li>
+          <li><a href="/equipe"><i class="fas fa-user-circle"></i> فريق العمل</a></li>
+          <li><a href="/contact"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+          <li><a href="/faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+          <li><a href="/politique-confidentialite"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <main class="article-detail-container" style="display: block; max-width: 800px; margin: 2rem auto; padding: 1rem;">
+    <a href="/concours" class="back-to-list" style="display: inline-block; margin-bottom: 1.5rem; color: var(--primary);">
+      <i class="fas fa-arrow-right"></i> العودة إلى المباريات
+    </a>
+    
+    <article>
+      <h1 class="page-title" style="font-size: 1.8rem; margin-bottom: 1rem;">{job.title || 'مباراة توظيف'}</h1>
+      
+      <div class="job-meta" style="margin-bottom: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 1rem;">
+        {job.organisation && (
+          <span><i class="fas fa-building"></i> <strong>الجهة المنظمة:</strong> {job.organisation}</span>
+        )}
+        {job.region && (
+          <span><i class="fas fa-map-marker-alt"></i> <strong>الجهة:</strong> {job.region}</span>
+        )}
+        {job.dateLimite && (
+          <span><i class="fas fa-calendar-alt"></i> <strong>آخر أجل:</strong> {job.dateLimite}</span>
+        )}
+        {job.secteur && (
+          <span><i class="fas fa-tag"></i> <strong>القطاع:</strong> {job.secteur}</span>
+        )}
+      </div>
+
+      <section class="analyse-bawabaty" style="margin-bottom: 2rem; padding: 1.5rem; background: #f0f7ff; border-right: 4px solid var(--primary); border-radius: 8px;">
+        <h2 style="margin-top: 0; color: var(--primary);">📊 تحليل بوابتي 360</h2>
+        <p style="font-size: 1.05rem; line-height: 1.8;">
+          {job.analyse || 'فرصة ممتازة لحاملي الشهادات المطلوبة. ننصح بالاطلاع على الشروط بدقة والتسجيل المبكر. هذه المباراة تمثل مدخلاً مهماً للوظيفة العمومية في هذا التخصص.'}
+        </p>
+      </section>
+
+      <section class="job-content" style="margin-bottom: 2rem;">
+        <h2>📋 تفاصيل الإعلان</h2>
+        <div style="font-size: 1.05rem; line-height: 1.9;">
+          {job.content || job.description || 'تفاصيل المباراة قيد التحديث.'}
+        </div>
+      </section>
+
+      <section class="job-tips" style="margin-bottom: 2rem; padding: 1.5rem; background: #fef9e7; border-radius: 8px;">
+        <h2>💡 نصائح للمترشحين</h2>
+        <ul style="line-height: 1.9;">
+          <li>تأكد من استيفاء جميع الشروط قبل الترشح.</li>
+          <li>جهّز ملف الترشيح مبكراً (الشهادات، السوابق العدلية، الصور).</li>
+          <li>اطلع على مواضيع المباريات السابقة لنفس المؤسسة.</li>
+          <li>تابع صفحتنا لمستجدات هذه المباراة.</li>
+        </ul>
+      </section>
+    </article>
+
+    <div class="author-signature" style="margin-top: 2rem; padding: 1rem; border-top: 1px solid #eee; font-size: 0.9rem; color: #555;">
+      <p>✍️ <strong>بقلم: فريق بوابتي 360</strong> — <a href="/equipe">ياسين الإدريسي</a> | نُشرت في {job.datePub || '2026'} | آخر تحديث: 2026</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="logo-main">بوابتي</span><span class="logo-360">360</span>
+      </div>
+      <div class="footer-links">
+        <a href="/contact">اتصل بنا</a>
+        <a href="/faq">الأسئلة الشائعة</a>
+        <a href="/politique-confidentialite">الخصوصية</a>
+        <a href="/terms">شروط الاستخدام</a>
+        <a href="/sitemap.xml">خريطة الموقع</a>
+      </div>
+      <p class="copyright">© 2026 بوابتي 360 - جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>
+
+  <script is:inline src="/script.js"></script>
+</body>
+</html>
