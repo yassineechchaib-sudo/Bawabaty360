@@ -379,31 +379,13 @@
     });
   </script>
 <script is:inline>
-  // معالجة عرض تفاصيل المباراة عند وجود ?id= في الرابط
+  // إعادة توجيه ?id= القديمة إلى الصفحات الثابتة الجديدة
   (function() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
-    if (id && window.allJobs) {
-      const job = window.allJobs.find(j => j.id == id);
-      if (job) {
-        // إخفاء جميع أقسام القوائم
-        document.querySelectorAll('.concours-section, .page-title, .static-intro').forEach(el => el.style.display = 'none');
-        // إظهار قسم التفاصيل
-        const detailSection = document.getElementById('article-detail-section');
-        if (detailSection) detailSection.style.display = 'block';
-        const detailContent = document.getElementById('article-detail-content');
-        if (detailContent) {
-          // بناء HTML تفاصيل الوظيفة (مبسط)
-          detailContent.innerHTML = `
-            <div class="analyse-bawabaty"><strong>📊 تحليل بوابتي 360:</strong> ${job.analyse || "فرصة ممتازة لحاملي الشهادات المطلوبة. ننصح بالاطلاع على الشروط بدقة والتسجيل المبكر."}</div>
-            <h1>${job.title}</h1>
-            <p><strong>القطاع:</strong> ${job.secteur || 'غير محدد'}</p>
-            <p><strong>الجهة:</strong> ${job.region || 'غير محددة'}</p>
-            <p><strong>آخر أجل:</strong> ${job.dateLimite || 'غير محدد'}</p>
-            <div>${job.content || job.description || ''}</div>
-          `;
-        }
-      }
+    if (id) {
+      // إعادة توجيه فورية إلى الصفحة الجديدة
+      window.location.replace('/concours/' + id);
     }
   })();
 </script>
@@ -447,15 +429,26 @@
   }
 </style>
 <script is:inline>
-  // إعادة توجيه ?id= القديمة إلى الصفحات الثابتة الجديدة
-  (function() {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    if (id) {
-      // إعادة توجيه فورية إلى الصفحة الجديدة
-      window.location.replace('/concours/' + id);
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('toggle-static-intro');
+    const content = document.getElementById('static-intro-content');
+    const icon = document.getElementById('toggle-icon');
+    if (btn && content) {
+      // نبدأ مخفيين
+      content.style.display = 'none';
+      btn.classList.remove('active');
+      
+      btn.addEventListener('click', function() {
+        if (content.style.display === 'none') {
+          content.style.display = 'block';
+          btn.classList.add('active');
+        } else {
+          content.style.display = 'none';
+          btn.classList.remove('active');
+        }
+      });
     }
-  })();
+  });
 </script>
 </body>
 </html>
