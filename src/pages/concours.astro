@@ -1,5 +1,5 @@
 ---
-// صفحة المباريات – ثابتة مع أقسام ديناميكية
+// صفحة المباريات – ثابتة مع أقسام ديناميكية وإعادة توجيه ذكية
 ---
 
 <!DOCTYPE html>
@@ -271,30 +271,30 @@
   <main class="concours-page">
     <!-- المحتوى الثابت لتحسين الأرشفة وAdSense -->
     <div class="collapsible-wrapper">
-  <button class="collapsible-btn" id="toggle-static-intro">
-    <span>📋 معلومات عامة عن المباريات</span>
-    <i class="fas fa-chevron-down" id="toggle-icon"></i>
-  </button>
-  <div class="collapsible-content" id="static-intro-content">
-    <section class="static-intro">
-      <h1>مباريات التوظيف العمومي في المغرب</h1>
-      <p>مرحبًا بكم في صفحة المباريات الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات التوظيف في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. نوفر لكم معلومات دقيقة ومتكاملة عن شروط الترشيح، ملف الترشيح، مواعيد الاختبارات، وروابط التسجيل المباشرة.</p>
-      <h2>أحدث المباريات المعلنة</h2>
-      <ul>
-        <li>مباراة توظيف 600 ممرضاً من الدرجة الأولى – وزارة الصحة والحماية الاجتماعية – آخر أجل 23 يونيو 2026</li>
-        <li>مباراة توظيف 30 مفتشاً للإدارة الترابية (سلم 11) – وزارة الداخلية – آخر أجل 22 ماي 2026</li>
-        <li>مباراة توظيف 70 متصرفاً من الدرجة الثانية (سلم 10) – الوكالة الوطنية للمحافظة العقارية – آخر أجل 20 ماي 2026</li>
-        <li>مباراة توظيف 3 متصرفين من الدرجة الثانية (سلم 11) – وزارة التضامن والإدماج الاجتماعي والأسرة – آخر أجل 25 ماي 2026</li>
-        <li>مباراة ولوج سلك تكوين 160 تقنياً متخصصاً في المعلوميات – وزارة الداخلية – آخر أجل 28 ماي 2026</li>
-        <li>مباراة توظيف 20 تقنياً من الدرجة الثالثة (سلم 9) – المندوبية السامية للتخطيط – آخر أجل 1 يونيو 2026</li>
-        <li>مباراة توظيف 150 إطاراً (Encadrants) – المكتب الوطني للسكك الحديدية – آخر أجل 4 ماي 2026</li>
-        <li>مباراة توظيف 35 تقنياً من الدرجة الثالثة (سلم 9) في الطوبوغرافيا – ANCFCC – آخر أجل 20 ماي 2026</li>
-        <li>مباراة توظيف 8 متصرفين من الدرجة الثانية (سلم 11) – المؤسسة الوطنية للمتاحف – آخر أجل 15 ماي 2026</li>
-        <li>مباراة توظيف متصرفين من الدرجة الثالثة (سلم 10) – وزارة التضامن – آخر أجل 25 ماي 2026</li>
-      </ul>
-    </section>
-  </div>
-</div>
+      <button class="collapsible-btn" id="toggle-static-intro">
+        <span>📋 معلومات عامة عن المباريات</span>
+        <i class="fas fa-chevron-down" id="toggle-icon"></i>
+      </button>
+      <div class="collapsible-content" id="static-intro-content">
+        <section class="static-intro">
+          <h1>مباريات التوظيف العمومي في المغرب</h1>
+          <p>مرحبًا بكم في صفحة المباريات الرسمية لبوابتي 360. نقدم لكم أحدث إعلانات التوظيف في القطاع العام المغربي، مجمعة من مصادرها الرسمية ومرتبة حسب تاريخ النشر. نوفر لكم معلومات دقيقة ومتكاملة عن شروط الترشيح، ملف الترشيح، مواعيد الاختبارات، وروابط التسجيل المباشرة.</p>
+          <h2>أحدث المباريات المعلنة</h2>
+          <ul>
+            <li>مباراة توظيف 600 ممرضاً من الدرجة الأولى – وزارة الصحة والحماية الاجتماعية – آخر أجل 23 يونيو 2026</li>
+            <li>مباراة توظيف 30 مفتشاً للإدارة الترابية (سلم 11) – وزارة الداخلية – آخر أجل 22 ماي 2026</li>
+            <li>مباراة توظيف 70 متصرفاً من الدرجة الثانية (سلم 10) – الوكالة الوطنية للمحافظة العقارية – آخر أجل 20 ماي 2026</li>
+            <li>مباراة توظيف 3 متصرفين من الدرجة الثانية (سلم 11) – وزارة التضامن والإدماج الاجتماعي والأسرة – آخر أجل 25 ماي 2026</li>
+            <li>مباراة ولوج سلك تكوين 160 تقنياً متخصصاً في المعلوميات – وزارة الداخلية – آخر أجل 28 ماي 2026</li>
+            <li>مباراة توظيف 20 تقنياً من الدرجة الثالثة (سلم 9) – المندوبية السامية للتخطيط – آخر أجل 1 يونيو 2026</li>
+            <li>مباراة توظيف 150 إطاراً (Encadrants) – المكتب الوطني للسكك الحديدية – آخر أجل 4 ماي 2026</li>
+            <li>مباراة توظيف 35 تقنياً من الدرجة الثالثة (سلم 9) في الطوبوغرافيا – ANCFCC – آخر أجل 20 ماي 2026</li>
+            <li>مباراة توظيف 8 متصرفين من الدرجة الثانية (سلم 11) – المؤسسة الوطنية للمتاحف – آخر أجل 15 ماي 2026</li>
+            <li>مباراة توظيف متصرفين من الدرجة الثالثة (سلم 10) – وزارة التضامن – آخر أجل 25 ماي 2026</li>
+          </ul>
+        </section>
+      </div>
+    </div>
 
     <!-- المحتوى الديناميكي -->
     <h1 class="page-title">مباريات القطاع العام</h1>
@@ -378,77 +378,72 @@
       if (typeof initConcours === 'function') initConcours();
     });
   </script>
-<script is:inline>
-  // إعادة توجيه ?id= القديمة إلى الصفحات الثابتة الجديدة
-  (function() {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    if (id) {
-      // إعادة توجيه فورية إلى الصفحة الجديدة
-      window.location.replace('/concours/' + id);
+
+  <!-- إعادة توجيه الروابط القديمة إلى الصفحات الجديدة -->
+  <script is:inline>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      if (id) {
+        window.location.replace('/concours/' + id);
+      }
+    })();
+  </script>
+
+  <style is:inline>
+    .collapsible-wrapper {
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-light, #ddd);
+      border-radius: 8px;
+      overflow: hidden;
     }
-  })();
-</script>
-<style is:inline>
-  .collapsible-wrapper {
-    margin-bottom: 2rem;
-    border: 1px solid var(--border-light, #ddd);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .collapsible-btn {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: var(--bg-secondary, #f9f9f9);
-    border: none;
-    text-align: right;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: inherit;
-    color: inherit;
-  }
-  .collapsible-btn:hover {
-    background: var(--bg-hover, #f0f0f0);
-  }
-  .collapsible-btn .fa-chevron-down {
-    transition: transform 0.3s;
-  }
-  .collapsible-btn.active .fa-chevron-down {
-    transform: rotate(180deg);
-  }
-  .collapsible-content {
-    padding: 1rem;
-    display: block;
-  }
-  .collapsible-content.hidden {
-    display: none;
-  }
-</style>
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.getElementById('toggle-static-intro');
-    const content = document.getElementById('static-intro-content');
-    const icon = document.getElementById('toggle-icon');
-    if (btn && content) {
-      // نبدأ مخفيين
-      content.style.display = 'none';
-      btn.classList.remove('active');
-      
-      btn.addEventListener('click', function() {
-        if (content.style.display === 'none') {
-          content.style.display = 'block';
-          btn.classList.add('active');
-        } else {
-          content.style.display = 'none';
-          btn.classList.remove('active');
-        }
-      });
+    .collapsible-btn {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg-secondary, #f9f9f9);
+      border: none;
+      text-align: right;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: inherit;
+      color: inherit;
     }
-  });
-</script>
+    .collapsible-btn:hover {
+      background: var(--bg-hover, #f0f0f0);
+    }
+    .collapsible-btn .fa-chevron-down {
+      transition: transform 0.3s;
+    }
+    .collapsible-btn.active .fa-chevron-down {
+      transform: rotate(180deg);
+    }
+    .collapsible-content {
+      padding: 1rem;
+      display: block;
+    }
+  </style>
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('toggle-static-intro');
+      const content = document.getElementById('static-intro-content');
+      if (btn && content) {
+        content.style.display = 'none';
+        btn.classList.remove('active');
+        btn.addEventListener('click', function() {
+          if (content.style.display === 'none') {
+            content.style.display = 'block';
+            btn.classList.add('active');
+          } else {
+            content.style.display = 'none';
+            btn.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
