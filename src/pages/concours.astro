@@ -269,15 +269,6 @@
   <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
   <main class="concours-page">
-    <script is:inline>
-      // حل مؤقت لإصلاح روابط المباريات فوراً
-      setInterval(function() {
-        document.querySelectorAll('a[href*="concours.html?id="]').forEach(function(link) {
-          var id = link.getAttribute('href').split('?id=')[1];
-          if (id) link.setAttribute('href', '/concours/' + id);
-        });
-      }, 500);
-    </script>
     <!-- المحتوى الثابت لتحسين الأرشفة وAdSense -->
     <div class="collapsible-wrapper">
       <button class="collapsible-btn" id="toggle-static-intro">
@@ -388,7 +379,7 @@
     });
   </script>
 
-  <!-- إعادة توجيه الروابط القديمة إلى الصفحات الجديدة -->
+  <!-- إعادة توجيه الزوار من الروابط القديمة إلى الصفحات الجديدة -->
   <script is:inline>
     (function() {
       const params = new URLSearchParams(window.location.search);
