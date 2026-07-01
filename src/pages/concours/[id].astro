@@ -159,7 +159,7 @@ const jsonLd = {
         <div class="article-gallery">
           {job.images.map(img => (
             <div class="gallery-item">
-              <img src={"/" + img} alt={job.title} onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect width=%22800%22 height=%22500%22 fill=%22%23e2e8f0%22/%3E%3Ctext x=%2240%22 y=%2240%22 font-size=%2220%22 fill=%22%23475569%22%3Eالصورة غير متوفرة%3C/text%3E%3C/svg%3E';" />
+              <img src={"/" + img} alt={job.title} onerror="this.src='/images/og-image.jpg'" />
             </div>
           ))}
         </div>
