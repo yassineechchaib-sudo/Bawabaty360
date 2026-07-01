@@ -1,0 +1,46 @@
+---
+import { ecoles } from '../../data/ecoles.js';
+
+export async function getStaticPaths() {
+  return ecoles.map(ecole => ({
+    params: { slug: ecole.slug },
+    props: { ecole }
+  }));
+}
+
+const { ecole } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>{ecole.titre} | بوابتي 360</title>
+  <meta name="description" content={ecole.description} />
+  <link rel="stylesheet" href="/style.css" />
+  <!-- ... الخطوط والأيقونات كما في الصفحات الأخرى ... -->
+</head>
+<body>
+  <header id="main-header">...</header>
+  <div class="sidebar">...</div>
+
+  <main class="article-detail-container" style="max-width: 800px; margin: 2rem auto; padding: 1rem;">
+    <a href="/ecoles-superieures" class="back-to-list"><i class="fas fa-arrow-right"></i> العودة إلى المدارس العليا</a>
+    <article>
+      <h1>{ecole.nom}</h1>
+      <p><strong>المدن:</strong> {ecole.villes?.join('، ')}</p>
+      <p><strong>شروط الولوج:</strong> {ecole.admission}</p>
+      <p><strong>مدة التكوين:</strong> {ecole.duree}</p>
+      <h2>التخصصات</h2>
+      <ul>
+        {ecole.specialites?.map(s => <li>{s}</li>)}
+      </ul>
+      <div class="legal-text">
+        {ecole.contenu}
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">...</footer>
+</body>
+</html>
