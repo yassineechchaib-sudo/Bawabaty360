@@ -1,72 +1,57 @@
 ---
-// المدارس العليا في المغرب – صفحة رئيسية (Hub)
+import { ecoles } from '../data/ecoles.js';
 ---
 
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <!-- ... (نفس head السابق) ... -->
+  <!-- نفس head كما في concours.astro -->
+  <link rel="stylesheet" href="/style.css" />
   <style is:inline>
-    /* ... (نفس التنسيقات السابقة) ... */
-    
-    /* تنسيقات بطاقات المدارس */
-    .school-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    .school-card {
-      background: var(--white, #fff);
-      border: 1px solid var(--border-light, #e5e7eb);
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-    .school-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    }
-    .school-card h3 {
-      margin: 0.5rem 0;
-    }
-    .school-card p {
-      color: var(--text-secondary, #64748b);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      flex-grow: 1;
-    }
-    .school-card .btn {
-      margin-top: 1rem;
-      align-self: flex-end;
-    }
+    /* نفس تنسيقات collapsible و hero السابقة */
+    .school-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .school-card { /* تنسيق البطاقة */ }
   </style>
 </head>
 <body>
-  <!-- ... (نفس Header, Sidebar) ... -->
+  <header id="main-header">...</header>
+  <div class="sidebar" id="sidebar">
+    <!-- هنا أضف رابط المدارس العليا في القائمة -->
+    ...
+  </div>
 
-  <main style="max-width: 1000px; margin: 2rem auto; padding: 1rem;">
-    <!-- ... (نفس Hero, أقسام "لماذا", "أنواع", "شروط", "نظرة على أبرز المدارس", "نصائح") ... -->
-
-    <!-- 🏫 قسم المقالات الفردية (جديد) -->
-    <h2 class="section-title" id="articles">🏫 المدارس المتاحة</h2>
-    <p>ستجد هنا مقالات مفصلة عن كل مدرسة على حدة. اضغط على المدرسة لقراءة الدليل الشامل الخاص بها.</p>
-    <div class="school-cards-grid">
-      
-      <!-- بطاقة ENSA -->
-      <div class="school-card">
-        <h3>المدرسة الوطنية للعلوم التطبيقية (ENSA)</h3>
-        <p>دليل شامل حول المدارس الوطنية للعلوم التطبيقية: شروط الولوج، التخصصات، والمدن المتواجدة بها.</p>
-        <a href="/ecoles-superieures/ensa" class="btn btn-outline">اقرأ الدليل <i class="fas fa-arrow-left"></i></a>
+  <main class="concours-page">
+    <!-- المحتوى الثابت مع الطي -->
+    <div class="collapsible-wrapper">
+      <button class="collapsible-btn" id="toggle-static-intro">
+        <span>📋 دليل المدارس العليا</span>
+        <i class="fas fa-chevron-down" id="toggle-icon"></i>
+      </button>
+      <div class="collapsible-content" id="static-intro-content">
+        <section class="static-intro">
+          <h1>المدارس العليا في المغرب</h1>
+          <p>...</p>
+          <!-- كل المحتوى الغني الذي لديك بالفعل -->
+        </section>
       </div>
+    </div>
 
-      <!-- ستضيف بطاقات جديدة هنا يدويًا كلما نشرت مقالاً -->
-      
+    <h1 class="page-title">المدارس العليا</h1>
+    <p class="page-intro">اختر المدرسة لعرض التفاصيل الكاملة.</p>
+
+    <!-- عرض بطاقات المدارس -->
+    <div class="school-cards-grid">
+      {ecoles.map(ecole => (
+        <div class="school-card">
+          <h3>{ecole.nom}</h3>
+          <p>{ecole.description}</p>
+          <a href={`/ecoles-superieures/${ecole.slug}`} class="btn btn-outline">تفاصيل <i class="fas fa-arrow-left"></i></a>
+        </div>
+      ))}
     </div>
   </main>
 
-  <!-- ... (نفس Footer) ... -->
+  <footer class="site-footer">...</footer>
+  <!-- سكريبتات الطي والـ JS الأساسية -->
 </body>
 </html>
