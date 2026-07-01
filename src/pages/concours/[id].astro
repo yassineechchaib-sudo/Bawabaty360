@@ -174,7 +174,13 @@ const jsonLd = {
       )}
 
       {job.introText ? <p class="intro-text">{job.introText}</p> : ''}
-
+      <!-- تحليل بوابتي 360 -->
+        <section class="analyse-bawabaty" style="margin-bottom: 2rem; padding: 1.5rem; background: #f0f7ff; border-right: 4px solid var(--primary); border-radius: 8px;">
+          <h2 style="margin-top: 0; color: var(--primary);">📊 تحليل بوابتي 360</h2>
+          <p style="font-size: 1.05rem; line-height: 1.8;">
+            {job.analyse || 'فرصة ممتازة لحاملي الشهادات المطلوبة. ننصح بالاطلاع على الشروط بدقة والتسجيل المبكر. هذه المباراة تمثل مدخلاً مهماً للوظيفة العمومية في هذا التخصص. نقترح البدء في التحضير للاختبار الكتابي عبر مراجعة مواضيع السنوات السابقة والاطلاع على دليلنا الشامل للمباريات.'}
+          </p>
+        </section>
       <h3>شروط المشاركة</h3>
       <p>{job.conditionsIntro || 'يشترط في المترشحين توفر الشروط التالية:'}</p>
       <ul class="conditions-list">
