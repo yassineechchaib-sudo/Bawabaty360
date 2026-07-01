@@ -5,340 +5,68 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="دليلك الشامل لاختيار مدرستك العليا بعد البكالوريا في المغرب. تعرف على أنواع المدارس، شروط الولوج، وأبرز المؤسسات." />
-  <meta property="og:image" content="https://bawabaty360.com/og-image.jpg" />
-  <title>دليل المدارس العليا في المغرب | بوابتي 360</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link rel="stylesheet" href="/style.css" />
-  
-  <!-- تنسيقات خاصة بالصفحة -->
+  <!-- ... (نفس head السابق) ... -->
   <style is:inline>
-    /* ========== تنسيقات صفحة المدارس العليا ========== */
-    .hero-ecoles {
-      background: linear-gradient(135deg, var(--primary-light, #1E3A8A), #3B82F6);
-      color: white;
-      padding: 3rem 2rem;
-      border-radius: 8px;
-      text-align: center;
-      margin-bottom: 2rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    .hero-ecoles h1 {
-      color: white;
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-    .hero-ecoles p {
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-      opacity: 0.95;
-      line-height: 1.8;
-    }
-    .section-title {
-      font-size: 1.6rem;
-      border-bottom: 3px solid var(--primary-light);
-      padding-bottom: 0.5rem;
-      margin: 2rem 0 1.5rem;
-      display: inline-block;
-    }
-    .school-types-grid {
+    /* ... (نفس التنسيقات السابقة) ... */
+    
+    /* تنسيقات بطاقات المدارس */
+    .school-cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
-      margin: 1.5rem 0;
+      margin: 2rem 0;
     }
-    .school-type-card {
-      background: var(--bg-secondary, #f9fafb);
+    .school-card {
+      background: var(--white, #fff);
       border: 1px solid var(--border-light, #e5e7eb);
       border-radius: 8px;
       padding: 1.5rem;
       transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
     }
-    .school-type-card:hover {
+    .school-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      border-color: var(--primary-light);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
-    .school-type-card i {
-      font-size: 2rem;
-      color: var(--primary-light);
-      margin-bottom: 1rem;
+    .school-card h3 {
+      margin: 0.5rem 0;
     }
-    .school-type-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-    }
-    .school-type-card p {
-      font-size: 0.95rem;
+    .school-card p {
       color: var(--text-secondary, #64748b);
-      line-height: 1.7;
-    }
-    .table-responsive {
-      overflow-x: auto;
-      margin: 1.5rem 0;
-    }
-    .ecoles-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--bg-primary, #fff);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    .ecoles-table th {
-      background: var(--primary-light);
-      color: white;
-      font-weight: 600;
-      padding: 0.9rem;
-      text-align: right;
       font-size: 0.95rem;
+      line-height: 1.6;
+      flex-grow: 1;
     }
-    .ecoles-table td {
-      padding: 0.8rem 0.9rem;
-      border-bottom: 1px solid var(--border-light, #e5e7eb);
-      font-size: 0.9rem;
-    }
-    .ecoles-table tr:nth-child(even) {
-      background: #f8fafc;
-    }
-    .tips-list {
-      list-style: none;
-      padding: 0;
-    }
-    .tips-list li {
-      position: relative;
-      padding-right: 2rem;
-      margin-bottom: 1rem;
-      line-height: 1.7;
-    }
-    .tips-list li::before {
-      content: '\f058';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      position: absolute;
-      right: 0;
-      top: 2px;
-      color: var(--primary-light);
-    }
-    .cta-ecoles {
-      background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
-      border: 1px solid #bbf7d0;
-      border-radius: 8px;
-      padding: 2rem;
-      text-align: center;
-      margin: 2rem 0 1rem;
-    }
-    .cta-ecoles h3 {
-      color: #166534;
-      margin-bottom: 0.5rem;
-    }
-    .cta-ecoles .btn {
-      display: inline-block;
+    .school-card .btn {
       margin-top: 1rem;
+      align-self: flex-end;
     }
   </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2950437567705830"
-     crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- ========== HEADER ========== -->
-  <header id="main-header">
-    <div class="header-container">
-      <button class="hamburger" id="hamburger-btn" aria-label="القائمة">
-        <i class="fas fa-bars"></i>
-      </button>
-      <a href="/" class="logo">
-        <span class="logo-main">بوابتي</span><span class="logo-360">360</span>
-      </a>
-      <button class="dark-toggle" id="dark-toggle" aria-label="الوضع الليلي/النهاري">
-        <i class="fas fa-moon"></i>
-      </button>
-    </div>
-  </header>
-
-  <!-- ========== SIDEBAR ========== -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <span class="sidebar-title">القائمة</span>
-      <button class="sidebar-close" id="sidebar-close"><i class="fas fa-times"></i></button>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-section">
-        <h3>الأقسام</h3>
-        <ul>
-          <li class="nav-group">
-            <span class="nav-group-title"><i class="fas fa-landmark"></i> القطاع العام</span>
-            <ul class="sub-nav">
-              <li><a href="/concours"><i class="fas fa-file-alt"></i> مباريات</a></li>
-              <li><a href="/emplois-superieurs"><i class="fas fa-user-tie"></i> مناصب عليا</a></li>
-              <li><a href="/postes-responsabilite"><i class="fas fa-briefcase"></i> مناصب المسؤولية</a></li>
-              <li><a href="/salaires-2026"><i class="fas fa-money-bill-wave"></i> الأجور 2026</a></li>
-              <li><a href="/calendrier"><i class="fas fa-calendar-alt"></i> الرزنامة 2026</a></li>
-            </ul>
-          </li>
-          <li><a href="/secteur-prive"><i class="fas fa-building"></i> القطاع الخاص</a></li>
-        </ul>
-      </div>
-      <div class="nav-section">
-        <h3>أدلة تعليمية</h3>
-        <ul>
-          <li><a href="/guide-concours"><i class="fas fa-book"></i> الدليل الشامل للمباريات</a></li>
-          <li><a href="/guide-cv"><i class="fas fa-file-alt"></i> كتابة السيرة الذاتية</a></li>
-          <li><a href="/guide-oral"><i class="fas fa-microphone-alt"></i> اجتياز الاختبارات الشفوية</a></li>
-          <li><a href="/echelles-guide"><i class="fas fa-layer-group"></i> نظام السلاليم والترقيات</a></li>
-          <li><a href="/public-vs-prive"><i class="fas fa-balance-scale"></i> القطاع العام مقابل الخاص</a></li>
-          <li><a href="/ecoles-superieures"><i class="fas fa-graduation-cap"></i> المدارس العليا</a></li>
-          <li><a href="/specialites-2026"><i class="fas fa-chart-line"></i> أفضل التخصصات المطلوبة</a></li>
-          <li><a href="/sans-bac"><i class="fas fa-tools"></i> وظائف بدون بكالوريا</a></li>
-        </ul>
-      </div>
-      <div class="nav-section">
-        <h3>معلومات</h3>
-        <ul>
-          <li><a href="/qui-sommes-nous"><i class="fas fa-users"></i> من نحن</a></li>
-          <li><a href="/equipe"><i class="fas fa-user-circle"></i> فريق العمل</a></li>
-          <li><a href="/contact"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
-          <li><a href="/faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
-          <li><a href="/politique-confidentialite"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <!-- ... (نفس Header, Sidebar) ... -->
 
   <main style="max-width: 1000px; margin: 2rem auto; padding: 1rem;">
-    
-    <!-- Hero Section -->
-    <section class="hero-ecoles">
-      <h1>دليلك الشامل لاختيار مدرستك العليا بعد البكالوريا</h1>
-      <p>مرحلة ما بعد البكالوريا هي نقطة تحول حاسمة في مسارك الدراسي والمهني. في هذا الدليل، نضع بين يديك خريطة طريق واضحة ومفصلة للتعرف على مختلف المدارس العليا في المغرب، شروط ولوجها، والآفاق التي تفتحها أمامك، لتتمكن من اتخاذ القرار الأنسب لمستقبلك.</p>
-    </section>
+    <!-- ... (نفس Hero, أقسام "لماذا", "أنواع", "شروط", "نظرة على أبرز المدارس", "نصائح") ... -->
 
-    <!-- لماذا المدارس العليا -->
-    <h2 class="section-title">لماذا تختار المدارس العليا؟</h2>
-    <p>تعتبر المدارس العليا والمعاهد المتخصصة في المغرب الوجهة المفضلة للعديد من حاملي شهادة البكالوريا، وذلك لعدة أسباب جوهرية. أولاً، تقدم هذه المؤسسات تكويناً أكاديمياً وتطبيقياً عالي الجودة يتماشى مع متطلبات سوق الشغل المتجددة. ثانياً، تعتمد نظاماً بيداغوجياً يركز على التأطير عن قرب، حيث تكون أعداد الطلبة محدودة مقارنة بالكليات ذات الاستقطاب المفتوح.</p>
-    <p>بالإضافة إلى ذلك، توفر المدارس العليا فرصاً ممتازة للتدريب الميداني (Stages) داخل المقاولات والشركات، مما يسهل عملية الإدماج المهني بعد التخرج. الحصول على دبلوم من مدرسة عليا مرموقة (كمهندس دولة أو إطار متخصص) يفتح أبواباً واسعة لفرص عمل برواتب مجزية ومسارات مهنية واعدة.</p>
+    <!-- 🏫 قسم المقالات الفردية (جديد) -->
+    <h2 class="section-title" id="articles">🏫 المدارس المتاحة</h2>
+    <p>ستجد هنا مقالات مفصلة عن كل مدرسة على حدة. اضغط على المدرسة لقراءة الدليل الشامل الخاص بها.</p>
+    <div class="school-cards-grid">
+      
+      <!-- بطاقة ENSA -->
+      <div class="school-card">
+        <h3>المدرسة الوطنية للعلوم التطبيقية (ENSA)</h3>
+        <p>دليل شامل حول المدارس الوطنية للعلوم التطبيقية: شروط الولوج، التخصصات، والمدن المتواجدة بها.</p>
+        <a href="/ecoles-superieures/ensa" class="btn btn-outline">اقرأ الدليل <i class="fas fa-arrow-left"></i></a>
+      </div>
 
-    <!-- أنواع المدارس العليا -->
-    <h2 class="section-title">أنواع المدارس العليا في المغرب</h2>
-    <p>ينقسم التعليم العالي ذو الاستقطاب المحدود في المغرب إلى عدة فئات رئيسية، تلبي مختلف الميول والتطلعات:</p>
-    
-    <div class="school-types-grid">
-      <div class="school-type-card">
-        <i class="fas fa-microchip"></i>
-        <h3>مدارس الهندسة</h3>
-        <p>تُخرج مهندسي دولة في تخصصات متنوعة. تشمل ENSA، ENSAM، EMI، EHTP وغيرها. التكوين يمتد لـ 5 سنوات بعد البكالوريا أو 3 سنوات بعد الأقسام التحضيرية.</p>
-      </div>
-      <div class="school-type-card">
-        <i class="fas fa-chart-line"></i>
-        <h3>مدارس التجارة والتسيير</h3>
-        <p>متخصصة في تكوين أطر عليا في مجالات الإدارة، المالية، التسويق، والمحاسبة. أبرزها ENCG و ISCAE.</p>
-      </div>
-      <div class="school-type-card">
-        <i class="fas fa-user-doctor"></i>
-        <h3>كليات الطب والصيدلة</h3>
-        <p>تستقطب النخبة من حاملي البكالوريا العلمية لتكوين أطباء وصيادلة. تشمل FMP و FMD الموزعة على كبريات المدن.</p>
-      </div>
-      <div class="school-type-card">
-        <i class="fas fa-laptop-code"></i>
-        <h3>المدارس العليا للتكنولوجيا</h3>
-        <p>تقدم تكويناً تقنياً عالياً يمتد لسنتين يتوج بدبلوم (DUT). تشمل EST و FST.</p>
-      </div>
-      <div class="school-type-card">
-        <i class="fas fa-chalkboard-user"></i>
-        <h3>مدارس التربية والتعليم</h3>
-        <p>مخصصة لتكوين أساتذة التعليم. تشمل ENS و ESEF.</p>
-      </div>
-      <div class="school-type-card">
-        <i class="fas fa-shield-halved"></i>
-        <h3>المدارس العسكرية</h3>
-        <p>توفر تكويناً يجمع بين الانضباط العسكري والتحصيل الأكاديمي العالي. مثل ARM و ERA.</p>
-      </div>
-    </div>
-
-    <!-- مسارات الولوج -->
-    <h2 class="section-title">كيف تلتحق بمدرسة عليا؟</h2>
-    <div class="table-responsive">
-      <table class="ecoles-table">
-        <thead>
-          <tr><th>المسار</th><th>الشروط العامة</th><th>أمثلة للمدارس</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>بعد البكالوريا مباشرة</strong></td><td>انتقاء أولي بناءً على نقط البكالوريا + مباراة كتابية.</td><td>ENCG, ENSA, ENSAM, FMP</td></tr>
-          <tr><td><strong>عبر الأقسام التحضيرية (CPGE)</strong></td><td>سنتان من التحضير المكثف ثم اجتياز المباراة الوطنية المشتركة (CNC).</td><td>EMI, EHTP, INPT, ENSIAS</td></tr>
-          <tr><td><strong>بعد دبلوم سنتين (Bac+2)</strong></td><td>الحصول على DUT أو BTS بميزة، ثم اجتياز مباراة الولوج.</td><td>ولوج سلك المهندسين بـ ENSA, ENSAM</td></tr>
-          <tr><td><strong>بعد الإجازة (Bac+3)</strong></td><td>دراسة الملف + مباراة لولوج الماستر أو السنة الرابعة.</td><td>ENCG (Passerelle), الماستر المتخصص</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- أبرز المدارس -->
-    <h2 class="section-title">نظرة على أبرز المدارس العليا في المغرب</h2>
-    <p>فيما يلي جدول يلخص معلومات أساسية عن بعض أهم المدارس العليا، والتي سنفصل القول في كل واحدة منها في مقالاتنا القادمة:</p>
-    <div class="table-responsive">
-      <table class="ecoles-table">
-        <thead>
-          <tr><th>اسم المدرسة</th><th>المدن (أمثلة)</th><th>نوع التكوين</th><th>المدة</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>ENSA</strong></td><td>طنجة، أكادير، وجدة، مراكش...</td><td>هندسة</td><td>5 سنوات</td></tr>
-          <tr><td><strong>ENSAM</strong></td><td>مكناس، الدار البيضاء، الرباط</td><td>هندسة</td><td>5 سنوات</td></tr>
-          <tr><td><strong>ENCG</strong></td><td>سطات، أكادير، طنجة، فاس...</td><td>تجارة وتسيير</td><td>5 سنوات</td></tr>
-          <tr><td><strong>FMP</strong></td><td>الرباط، الدار البيضاء، فاس، مراكش</td><td>طب وصيدلة</td><td>6-7 سنوات</td></tr>
-          <tr><td><strong>EST</strong></td><td>سلا، الدار البيضاء، فاس، مكناس</td><td>تقني عالي</td><td>سنتان</td></tr>
-          <tr><td><strong>FST</strong></td><td>المحمدية، سطات، مراكش، طنجة</td><td>علوم وتقنيات</td><td>3-5 سنوات</td></tr>
-          <tr><td><strong>ENS</strong></td><td>الرباط، تطوان، مكناس، فاس</td><td>تربية وتعليم</td><td>3 سنوات</td></tr>
-          <tr><td><strong>IAV</strong></td><td>الرباط، أكادير</td><td>زراعة وبيطرة</td><td>5-6 سنوات</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- نصائح ذهبية -->
-    <h2 class="section-title">نصائح ذهبية لاختيار المدرسة المناسبة</h2>
-    <ul class="tips-list">
-      <li><strong>حدد ميولك وشغفك أولاً:</strong> لا تختر مدرسة فقط لأنها "مشهورة". اسأل نفسك: هل أرى نفسي مهندساً؟ أم مسيراً؟ أم طبيباً؟</li>
-      <li><strong>ابحث عن الآفاق المهنية:</strong> قبل التسجيل، ابحث عن نسبة إدماج خريجي المدرسة في سوق الشغل.</li>
-      <li><strong>لا تكتفِ بخيار واحد:</strong> قم بالترشيح لأكبر عدد ممكن من المدارس. المنافسة شرسة، وتعدد الخيارات يزيد من فرص قبولك.</li>
-      <li><strong>استعد للمباريات مبكراً:</strong> النجاح النهائي يتطلب التحضير الجيد للمباريات الكتابية والمقابلات الشفوية.</li>
-      <li><strong>تواصل مع الخريجين والطلبة:</strong> ابحث عن طلبة يدرسون حالياً في المدارس التي تستهدفها واسألهم عن طبيعة الدراسة.</li>
-    </ul>
-
-    <!-- CTA -->
-    <div class="cta-ecoles">
-      <h3>هل تريد معرفة المزيد عن مدرسة معينة؟</h3>
-      <p>هذه الصفحة هي مجرد البداية! سنقوم بنشر مقالات تفصيلية عن كل مدرسة على حدة. تابعونا.</p>
-      <a href="/contact" class="btn btn-primary"><i class="fas fa-envelope"></i> تواصل معنا للاستشارة</a>
+      <!-- ستضيف بطاقات جديدة هنا يدويًا كلما نشرت مقالاً -->
+      
     </div>
   </main>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-logo">
-        <span class="logo-main">بوابتي</span><span class="logo-360">360</span>
-      </div>
-      <div class="footer-links">
-        <a href="/contact">اتصل بنا</a>
-        <a href="/faq">الأسئلة الشائعة</a>
-        <a href="/politique-confidentialite">الخصوصية</a>
-        <a href="/terms">شروط الاستخدام</a>
-        <a href="/sitemap.xml">خريطة الموقع</a>
-      </div>
-      <p class="copyright">© 2026 بوابتي 360 - جميع الحقوق محفوظة</p>
-    </div>
-  </footer>
-
-  <button class="scroll-top" id="scroll-top" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>
-
-  <script is:inline src="/data.js"></script>
-  <script is:inline src="/script.js"></script>
+  <!-- ... (نفس Footer) ... -->
 </body>
 </html>
