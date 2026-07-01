@@ -1,57 +1,52 @@
 ---
-import { ecoles } from '../data/ecoles.js';
+// المدارس العليا – الصفحة الرئيسية
 ---
 
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <!-- نفس head كما في concours.astro -->
+  <meta charset="UTF-8" />
+  <title>المدارس العليا | بوابتي 360</title>
   <link rel="stylesheet" href="/style.css" />
-  <style is:inline>
-    /* نفس تنسيقات collapsible و hero السابقة */
-    .school-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .school-card { /* تنسيق البطاقة */ }
-  </style>
+  <!-- نفس روابط الخطوط والأيقونات المعتادة -->
 </head>
 <body>
   <header id="main-header">...</header>
-  <div class="sidebar" id="sidebar">
-    <!-- هنا أضف رابط المدارس العليا في القائمة -->
-    ...
-  </div>
+  <div class="sidebar" id="sidebar">...</div>
 
-  <main class="concours-page">
-    <!-- المحتوى الثابت مع الطي -->
+  <main class="concours-page"> <!-- استخدمنا نفس كلاس concours-page لضمان التنسيق -->
+    <!-- محتوى ثابت اختياري مع نظام الطي -->
     <div class="collapsible-wrapper">
-      <button class="collapsible-btn" id="toggle-static-intro">
-        <span>📋 دليل المدارس العليا</span>
-        <i class="fas fa-chevron-down" id="toggle-icon"></i>
-      </button>
-      <div class="collapsible-content" id="static-intro-content">
+      <button class="collapsible-btn">📋 دليل المدارس العليا <i class="fas fa-chevron-down"></i></button>
+      <div class="collapsible-content">
         <section class="static-intro">
-          <h1>المدارس العليا في المغرب</h1>
-          <p>...</p>
-          <!-- كل المحتوى الغني الذي لديك بالفعل -->
+          <h1>دليلك للمدارس العليا بعد البكالوريا</h1>
+          <p>هنا يمكنك وضع مقدمة طويلة عن القسم...</p>
         </section>
       </div>
     </div>
 
     <h1 class="page-title">المدارس العليا</h1>
-    <p class="page-intro">اختر المدرسة لعرض التفاصيل الكاملة.</p>
+    <p class="page-intro">اختر المدرسة لعرض مقال شامل عنها.</p>
 
-    <!-- عرض بطاقات المدارس -->
-    <div class="school-cards-grid">
-      {ecoles.map(ecole => (
-        <div class="school-card">
-          <h3>{ecole.nom}</h3>
-          <p>{ecole.description}</p>
-          <a href={`/ecoles-superieures/${ecole.slug}`} class="btn btn-outline">تفاصيل <i class="fas fa-arrow-left"></i></a>
-        </div>
-      ))}
+    <!-- هنا مربط الفرس: قسم البطاقات -->
+    <div class="cards-grid">
+      
+      <!-- بطاقة ENSA -->
+      <a href="/ecoles-superieures/ensa" class="concours-card">
+        <span class="card-badge">ENSA</span>
+        <h3 class="card-title">المدرسة الوطنية للعلوم التطبيقية</h3>
+        <div class="card-meta"><i class="fas fa-map-marker-alt"></i> 13 مدينة عبر المغرب</div>
+        <div class="card-meta"><i class="fas fa-clock"></i> التكوين: 5 سنوات</div>
+        <span class="detail-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></span>
+      </a>
+
+      <!-- مستقبلاً، انسخ هذا القالب لكل مقال جديد -->
+      
     </div>
   </main>
 
   <footer class="site-footer">...</footer>
-  <!-- سكريبتات الطي والـ JS الأساسية -->
+  <!-- سكريبتات الطي (موجودة لديك) -->
 </body>
 </html>
