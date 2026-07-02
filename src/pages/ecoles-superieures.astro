@@ -1,5 +1,5 @@
 ---
-// المدارس العليا – صفحة رئيسية (نسخة طبق الأصل من concours)
+// المدارس العليا – صفحة رئيسية (بطاقات ثابتة)
 ---
 
 <!DOCTYPE html>
@@ -138,7 +138,7 @@
     <h1 class="page-title">المدارس العليا</h1>
     <p class="page-intro">أدلة شاملة لأهم المدارس العليا بعد البكالوريا.</p>
 
-    <!-- بطاقات المدارس -->
+    <!-- بطاقات المدارس (ثابتة) -->
     <div class="cards-grid">
       <!-- بطاقة ENSA -->
       <div class="concours-card">
@@ -173,7 +173,6 @@
   <script is:inline src="/script.js"></script>
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function() {
-      // نظام الطي
       const btn = document.getElementById('toggle-static-intro');
       const content = document.getElementById('static-intro-content');
       if (btn && content) {
